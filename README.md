@@ -96,20 +96,7 @@ Open [http://localhost:5173](http://localhost:5173)
 *Last updated: February 2026*
 ```
 
----
 
-**How to use it:**
-1. Copy everything above
-2. Paste into your `README.md`
-3. Replace `yourusername` with your actual GitHub username
-4. (Optional) Add real screenshots later and replace the banner placeholder
-
-Would you like me to also create:
-- A shorter "one-paragraph" version for the repo description?
-- Or a version with your real name / links?
-
-Just say the word and I’ll tweak it instantly! 🚀
-```
 
 # React + Vite
 
