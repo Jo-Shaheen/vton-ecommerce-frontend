@@ -1,0 +1,141 @@
+/* ============================================
+   AINAI – CSS Custom Properties (Design Tokens)
+   Brand Theme: "Modern Arabesque"
+   ============================================ */
+
+:root {
+
+  /* ── COLORS ── */
+
+  /* Primary */
+  --burgundy:        #8B4852;
+  --burgundy-dark:   #6d3640;
+  --burgundy-light:  #a85a66;
+
+  /* Secondary */
+  --gold:            #D4AF7A;
+  --gold-dark:       #b8925a;
+  --gold-light:      #e8cfa0;
+
+  /* Accent */
+  --sage:            #A8B5A0;
+  --sage-dark:       #8a9c80;
+  --sage-light:      #c4cfc0;
+
+  /* Neutral */
+  --ivory:           #F7F3ED;
+  --ivory-dark:      #E8DED0;
+  --ivory-darker:    #d6c9b8;
+
+  /* Text */
+  --charcoal:        #3A302B;
+  --charcoal-light:  #5c4f48;
+  --charcoal-muted:  #8a7d76;
+
+  /* Utility */
+  --white:           #FFFFFF;
+  --black:           #000000;
+  --error:           #C0392B;
+  --success:         #A8B5A0;   /* reuses sage */
+  --warning:         #D4AF7A;   /* reuses gold  */
+
+  /* ── GRADIENTS ── */
+  --gradient-brand:        linear-gradient(135deg, var(--burgundy) 0%, var(--gold) 100%);
+  --gradient-brand-light:  linear-gradient(135deg, var(--ivory) 0%, var(--ivory-dark) 100%);
+  --gradient-dark:         linear-gradient(135deg, var(--charcoal) 0%, var(--burgundy-dark) 100%);
+  --gradient-logo-dark:    linear-gradient(135deg, var(--ivory) 0%, var(--gold) 100%);
+
+  /* ── TYPOGRAPHY ── */
+  --font-serif:      'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-sans:       'Lato', 'Arial', sans-serif;
+  --font-mono:       'Courier New', monospace;
+
+  /* Font Sizes */
+  --text-xs:         0.75rem;    /* 12px */
+  --text-sm:         0.875rem;   /* 14px */
+  --text-base:       1rem;       /* 16px */
+  --text-md:         1.125rem;   /* 18px */
+  --text-lg:         1.25rem;    /* 20px */
+  --text-xl:         1.5rem;     /* 24px */
+  --text-2xl:        2rem;       /* 32px */
+  --text-3xl:        2.25rem;    /* 36px */
+  --text-4xl:        3rem;       /* 48px */
+  --text-5xl:        4rem;       /* 64px */
+
+  /* Font Weights */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Letter Spacing */
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.05em;
+  --tracking-wider:  0.1em;
+  --tracking-logo:   0.125em;   /* used on AINAI wordmark */
+
+  /* Line Heights */
+  --leading-tight:   1.2;
+  --leading-snug:    1.4;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.8;
+
+  /* ── SPACING ── */
+  --space-1:    0.25rem;   /*  4px */
+  --space-2:    0.5rem;    /*  8px */
+  --space-3:    0.75rem;   /* 12px */
+  --space-4:    1rem;      /* 16px */
+  --space-5:    1.25rem;   /* 20px */
+  --space-6:    1.5rem;    /* 24px */
+  --space-8:    2rem;      /* 32px */
+  --space-10:   2.5rem;    /* 40px */
+  --space-12:   3rem;      /* 48px */
+  --space-16:   4rem;      /* 64px */
+  --space-20:   5rem;      /* 80px */
+
+  /* ── BORDER RADIUS ── */
+  --radius-sm:      8px;
+  --radius-md:      12px;
+  --radius-lg:      20px;    /* primary card radius */
+  --radius-xl:      28px;
+  --radius-pill:    9999px;  /* pill buttons */
+  --radius-circle:  50%;
+
+  /* ── SHADOWS ── */
+  --shadow-sm:      0 2px 8px rgba(58, 48, 43, 0.08);
+  --shadow-md:      0 4px 15px rgba(58, 48, 43, 0.12);
+  --shadow-lg:      0 10px 40px rgba(58, 48, 43, 0.15);
+  --shadow-gold:    0 4px 20px rgba(212, 175, 122, 0.35);
+  --shadow-burgundy:0 4px 20px rgba(139, 72, 82, 0.30);
+
+  /* ── BORDERS ── */
+  --border-light:   1px solid var(--ivory-dark);
+  --border-medium:  1px solid var(--charcoal-muted);
+  --border-dashed:  2px dashed var(--sage);     /* VTON upload zone */
+  --border-sidebar: 1px solid rgba(255,255,255,0.1);
+
+  /* ── LAYOUT ── */
+  --sidebar-width:       260px;
+  --topbar-height:       64px;
+  --container-max:       1200px;
+  --content-max:         800px;
+
+  /* ── TRANSITIONS ── */
+  --transition-fast:     150ms ease;
+  --transition-base:     300ms ease;
+  --transition-slow:     500ms ease;
+
+  /* ── Z-INDEX ── */
+  --z-base:      1;
+  --z-dropdown:  100;
+  --z-sticky:    200;
+  --z-overlay:   300;
+  --z-modal:     400;
+  --z-toast:     500;
+
+  /* ── OPACITY ── */
+  --opacity-disabled:  0.45;   /* disabled Generate button state */
+  --opacity-muted:     0.65;
+  --opacity-subtle:    0.80;
+}
