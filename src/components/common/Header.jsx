@@ -9,7 +9,7 @@ export default function Header() {
         {/* Logo */}
         <div className={styles.logoSection}>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <h1 className={styles.logo}>Ayyinai</h1>
+            <h1 className={styles.logo}>AINAI</h1>
             <p className={styles.logoSubtext}>عَيِّناي</p>
           </Link>
         </div>
