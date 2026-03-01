@@ -1,0 +1,301 @@
+@import './variables.css';
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--ivory);
+}
+
+.mainContent {
+  flex: 1;
+  padding: var(--space-12) 0;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  width: 100%;
+}
+
+/* Welcome Section */
+.welcomeSection {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.welcomeTitle {
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--charcoal);
+  margin: 0 0 var(--space-3) 0;
+  padding: 0;
+}
+
+.welcomeSubtitle {
+  font-size: var(--text-lg);
+  color: var(--charcoal-muted);
+  margin: 0;
+  padding: 0;
+}
+
+/* Dashboard Grid */
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-8);
+  margin-bottom: var(--space-12);
+}
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.cardIcon {
+  font-size: 48px;
+  display: block;
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--charcoal);
+  margin: 0;
+  padding: 0;
+}
+
+.cardDescription {
+  font-size: var(--text-sm);
+  color: var(--charcoal-muted);
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  line-height: var(--leading-normal);
+}
+
+.cardLink {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  background: var(--burgundy);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-burgundy);
+}
+
+.cardLink:hover {
+  background: var(--burgundy-dark);
+  transform: translateY(-1px);
+}
+
+/* Info Sections */
+.infoSections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--space-8);
+}
+
+.infoCard {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+}
+
+.infoTitle {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--charcoal);
+  margin: 0 0 var(--space-6) 0;
+  padding: 0;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: var(--space-4);
+}
+
+/* Activity List */
+.activityList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.activityItem {
+  display: grid;
+  grid-template-columns: 100px 1fr 120px;
+  gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-4);
+  background: var(--ivory);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+}
+
+.activityBadge {
+  padding: var(--space-1) var(--space-3);
+  background: var(--gold);
+  color: var(--white);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.activityText {
+  color: var(--charcoal);
+  font-weight: var(--weight-semibold);
+}
+
+.activityDate {
+  color: var(--charcoal-muted);
+  text-align: right;
+  font-size: var(--text-xs);
+}
+
+/* Loyalty Info */
+.loyaltyInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.loyaltyPoints {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-8);
+  background: var(--gradient-brand);
+  border-radius: var(--radius-lg);
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.pointsValue {
+  font-family: var(--font-serif);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+}
+
+.pointsLabel {
+  font-size: var(--text-sm);
+  opacity: 0.9;
+}
+
+.loyaltyDescription {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--charcoal-muted);
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .dashboardGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .infoSections {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: var(--space-8) 0;
+  }
+
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .welcomeTitle {
+    font-size: var(--text-2xl);
+  }
+
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .card {
+    padding: var(--space-6);
+  }
+
+  .infoCard {
+    padding: var(--space-6);
+  }
+
+  .activityItem {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+
+  .activityDate {
+    text-align: left;
+  }
+
+  .loyaltyInfo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .loyaltyPoints {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .mainContent {
+    padding: var(--space-6) 0;
+  }
+
+  .welcomeTitle {
+    font-size: var(--text-xl);
+  }
+
+  .welcomeSubtitle {
+    font-size: var(--text-base);
+  }
+
+  .cardIcon {
+    font-size: 40px;
+  }
+
+  .cardTitle {
+    font-size: var(--text-lg);
+  }
+
+  .infoTitle {
+    font-size: var(--text-lg);
+  }
+
+  .pointsValue {
+    font-size: var(--text-3xl);
+  }
+}
