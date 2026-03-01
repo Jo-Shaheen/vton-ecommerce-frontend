@@ -1,5 +1,6 @@
 import { ShoppingBag, User, LogIn } from "lucide-react";
 import { Link } from "react-router-dom";
+import AinaiLogo from "./AinaiLogo";
 import styles from "../../styles/Header.module.css";
 
 export default function Header() {
@@ -9,8 +10,7 @@ export default function Header() {
         {/* Logo */}
         <div className={styles.logoSection}>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <h1 className={styles.logo}>AINAI</h1>
-            <p className={styles.logoSubtext}>عَيِّناي</p>
+            <AinaiLogo size="md" variant="light" showArabic={false} />
           </Link>
         </div>
 

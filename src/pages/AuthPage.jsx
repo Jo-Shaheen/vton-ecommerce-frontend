@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Mail, Lock, User, Eye, EyeOff, ArrowLeft } from "lucide-react";
+import AinaiLogo from "../components/common/AinaiLogo";
 import styles from "../styles/AuthPage.module.css";
 
 /* ─────────────────────────────────────────────
@@ -8,22 +9,6 @@ import styles from "../styles/AuthPage.module.css";
    Hook up your auth logic to the form handlers
    marked with TODO comments below.
 ───────────────────────────────────────────── */
-
-// ── Eye Logo SVG (brand mark) ──
-function EyeLogo({ size = 36 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 80 80" fill="none">
-      <path
-        d="M10 40 C10 40 25 15 40 15 C55 15 70 40 70 40 C70 40 55 65 40 65 C25 65 10 40 10 40Z"
-        fill="#8B4852"
-        opacity="0.15"
-      />
-      <ellipse cx="40" cy="40" rx="20" ry="20" fill="#8B4852" opacity="0.9" />
-      <ellipse cx="40" cy="40" rx="10" ry="10" fill="#D4AF7A" />
-      <ellipse cx="44" cy="36" rx="3" ry="3" fill="white" opacity="0.8" />
-    </svg>
-  );
-}
 
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState("login"); // 'login' | 'signup'
@@ -52,9 +37,7 @@ export default function AuthPage() {
           </Link>
 
           <div className={styles.brandLogo}>
-            <EyeLogo size={52} />
-            <h1 className={styles.brandName}>Ayyinai</h1>
-            <p className={styles.brandArabic}>عَيِّناي</p>
+            <AinaiLogo size="lg" variant="dark" showTagline={false} />
           </div>
 
           <h2 className={styles.brandTagline}>
