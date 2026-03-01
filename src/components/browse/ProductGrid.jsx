@@ -1,5 +1,5 @@
-import ProductCard from '../common/ProductCard';
-import styles from '../../styles/ProductGrid.module.css';
+import ProductCard from "../common/ProductCard";
+import styles from "../../styles/ProductGrid.module.css";
 
 export default function ProductGrid({ products = [] }) {
   return (
@@ -10,11 +10,12 @@ export default function ProductGrid({ products = [] }) {
             {products.map((product) => (
               <ProductCard
                 key={product.id}
+                id={product.id}
                 image={product.image}
                 name={product.name}
                 price={product.price}
-                onTryOn={() => console.log('Try on:', product.id)}
-                onAddToCart={() => console.log('Add to cart:', product.id)}
+                onTryOn={() => console.log("Try on:", product.id)}
+                onAddToCart={() => console.log("Add to cart:", product.id)}
               />
             ))}
           </div>
@@ -23,7 +24,8 @@ export default function ProductGrid({ products = [] }) {
             <div className={styles.emptyIcon}>∅</div>
             <h3 className={styles.emptyTitle}>No Products Found</h3>
             <p className={styles.emptyMessage}>
-              Try adjusting your filters or search terms to find what you're looking for.
+              Try adjusting your filters or search terms to find what you're
+              looking for.
             </p>
           </div>
         )}

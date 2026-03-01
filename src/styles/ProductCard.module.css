@@ -1,4 +1,4 @@
-@import './variables.css';
+@import "./variables.css";
 
 .card {
   background: var(--white);
@@ -19,10 +19,12 @@
 /* Image Section */
 .imageWrapper {
   position: relative;
+  display: block;
   width: 100%;
   padding-bottom: 100%;
   overflow: hidden;
   background: var(--ivory);
+  text-decoration: none;
 }
 
 .productImage {
@@ -99,6 +101,15 @@
   margin: 0;
   padding: 0;
   line-height: var(--leading-tight);
+}
+
+.productNameLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.productNameLink:hover .productName {
+  color: var(--burgundy);
 }
 
 .productPrice {

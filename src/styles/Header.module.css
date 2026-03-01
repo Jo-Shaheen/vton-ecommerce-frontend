@@ -1,4 +1,4 @@
-@import './variables.css';
+@import "./variables.css";
 
 .header {
   background: var(--white);
@@ -74,7 +74,7 @@
 }
 
 .navLink::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -4px;
   left: 0;
@@ -160,6 +160,33 @@
   transform: translateY(-1px);
 }
 
+/* Login Button */
+.loginButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  background: var(--burgundy);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-burgundy);
+  white-space: nowrap;
+}
+
+.loginButton:hover {
+  background: var(--burgundy-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(139, 72, 82, 0.35);
+  color: var(--white);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .headerContainer {
@@ -192,6 +219,11 @@
   .profileButton {
     width: 40px;
     height: 40px;
+  }
+
+  .loginButton {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-xs);
   }
 
   .cartBadge {

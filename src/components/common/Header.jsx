@@ -1,5 +1,6 @@
-import { ShoppingBag, User } from 'lucide-react';
-import styles from '../../styles/Header.module.css';
+import { ShoppingBag, User, LogIn } from "lucide-react";
+import { Link } from "react-router-dom";
+import styles from "../../styles/Header.module.css";
 
 export default function Header() {
   return (
@@ -7,31 +8,52 @@ export default function Header() {
       <div className={styles.headerContainer}>
         {/* Logo */}
         <div className={styles.logoSection}>
-          <h1 className={styles.logo}>Ayyinai</h1>
-          <p className={styles.logoSubtext}>عَيِّناي</p>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <h1 className={styles.logo}>Ayyinai</h1>
+            <p className={styles.logoSubtext}>عَيِّناي</p>
+          </Link>
         </div>
 
         {/* Navigation */}
         <nav className={styles.navigation}>
-          <a href="/" className={styles.navLink}>Home</a>
-          <a href="/browse" className={styles.navLink}>Browse</a>
-          <a href="/try-on-history" className={styles.navLink}>Try-Ons</a>
+          <Link to="/" className={styles.navLink}>
+            Home
+          </Link>
+          <Link to="/browse" className={styles.navLink}>
+            Browse
+          </Link>
+          <Link to="/try-on-history" className={styles.navLink}>
+            Try-Ons
+          </Link>
         </nav>
 
         {/* Right Section */}
         <div className={styles.rightSection}>
           {/* Cart Icon */}
           <div className={styles.cartWrapper}>
-            <button className={styles.cartButton} aria-label="Shopping cart">
+            <Link
+              to="/cart"
+              className={styles.cartButton}
+              aria-label="Shopping cart"
+            >
               <ShoppingBag size={24} />
-            </button>
-            <span className={styles.cartBadge}>2</span>
+            </Link>
           </div>
 
           {/* Profile Avatar */}
-          <button className={styles.profileButton} aria-label="User profile">
+          <Link
+            to="/dashboard"
+            className={styles.profileButton}
+            aria-label="User profile"
+          >
             <User size={24} />
-          </button>
+          </Link>
+
+          {/* Login Button */}
+          <Link to="/auth" className={styles.loginButton}>
+            <LogIn size={18} />
+            <span>Login</span>
+          </Link>
         </div>
       </div>
     </header>
