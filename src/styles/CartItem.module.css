@@ -1,0 +1,156 @@
+@import './variables.css';
+
+.item {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border-bottom: 1px solid var(--ivory-dark);
+  align-items: flex-start;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+/* Image */
+.itemImage {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background: var(--ivory);
+  flex-shrink: 0;
+}
+
+/* Details */
+.itemDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.itemName {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--charcoal);
+  margin: 0;
+  padding: 0;
+  line-height: var(--leading-tight);
+}
+
+.itemPrice {
+  font-size: var(--text-sm);
+  color: var(--burgundy);
+  font-weight: var(--weight-semibold);
+  margin: 0;
+  padding: 0;
+}
+
+/* Quantity Controls */
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.quantityButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--ivory-dark);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.quantityButton:hover {
+  border-color: var(--burgundy);
+  color: var(--burgundy);
+}
+
+.quantity {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--charcoal);
+  min-width: 28px;
+  text-align: center;
+}
+
+/* Actions */
+.itemActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+.itemTotal {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--charcoal);
+  margin: 0;
+  padding: 0;
+}
+
+.removeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--ivory);
+  color: var(--charcoal-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.removeButton:hover {
+  background: var(--error);
+  color: var(--white);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .item {
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+
+  .itemImage {
+    width: 70px;
+    height: 90px;
+  }
+
+  .itemName {
+    font-size: var(--text-sm);
+  }
+
+  .itemPrice {
+    font-size: var(--text-xs);
+  }
+
+  .itemTotal {
+    font-size: var(--text-sm);
+  }
+
+  .quantityButton {
+    width: 24px;
+    height: 24px;
+  }
+
+  .removeButton {
+    width: 28px;
+    height: 28px;
+  }
+}
