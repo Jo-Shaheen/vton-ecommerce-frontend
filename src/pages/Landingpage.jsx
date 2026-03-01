@@ -42,31 +42,37 @@ function EyeLogo({ size = 40, primaryColor = "#8B4852", accentColor = "#D4AF7A" 
 
 // ── Animated Eye Blink ──
 function AnimatedLogo() {
-  const [blink, setBlink] = useState(false);
-  useEffect(() => {
-    const t = setInterval(() => {
-      setBlink(true);
-      setTimeout(() => setBlink(false), 200);
-    }, 3000);
-    return () => clearInterval(t);
-  }, []);
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
-      <div style={{ transform: blink ? "scaleY(0.1)" : "scaleY(1)", transition: "transform 0.1s ease" }}>
-        <EyeLogo size={36} />
-      </div>
-      <span style={{
-        fontFamily: v("--font-serif"),
-        fontSize: "1.6rem",
-        fontWeight: 700,
-        letterSpacing: v("--tracking-logo"),
-        background: v("--gradient-brand"),
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        backgroundClip: "text",
-      }}>AINAI</span>
-    </div>
-  );
+    const [blink, setBlink] = useState(false);
+    useEffect(() => {
+        const t = setInterval(() => {
+            setBlink(true);
+            const timeout = setTimeout(() => setBlink(false), 200);
+            return () => clearTimeout(timeout);
+        }, 3000);
+        return () => clearInterval(t);
+    }, []);
+    return (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                <div style={{ transform: blink ? "scaleY(0.1)" : "scaleY(1)", transition: "transform 0.1s ease" }}>
+                    <EyeLogo size={32} />
+                </div>
+                <div style={{ transform: blink ? "scaleY(0.1)" : "scaleY(1)", transition: "transform 0.1s ease" }}>
+                    <EyeLogo size={32} />
+                </div>
+            </div>
+            <span style={{
+                fontFamily: v("--font-serif"),
+                fontSize: "1.6rem",
+                fontWeight: 700,
+                letterSpacing: v("--tracking-logo"),
+                background: v("--gradient-brand"),
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+            }}>AINAI</span>
+        </div>
+    );
 }
 
 // ── Header ──
