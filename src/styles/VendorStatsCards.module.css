@@ -1,4 +1,4 @@
-@import './variables.css';
+@import "./variables.css";
 
 /* ── Grid ── */
 .grid {
@@ -19,7 +19,9 @@
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
 .card:hover {
@@ -29,7 +31,7 @@
 
 /* Decorative accent bar at top */
 .card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -38,10 +40,18 @@
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
-.card.sales::before   { background: var(--stat-sales); }
-.card.orders::before  { background: var(--stat-orders); }
-.card.vton::before    { background: var(--stat-vton); }
-.card.revenue::before { background: var(--stat-revenue); }
+.card.sales::before {
+  background: var(--stat-sales);
+}
+.card.orders::before {
+  background: var(--stat-orders);
+}
+.card.vton::before {
+  background: var(--stat-vton);
+}
+.card.revenue::before {
+  background: var(--stat-revenue);
+}
 
 /* ── Icon ── */
 .iconWrap {
@@ -60,7 +70,7 @@
 }
 
 .card.sales .iconWrap {
-  background: rgba(139, 72, 82, 0.10);
+  background: rgba(139, 72, 82, 0.1);
   color: var(--stat-sales);
 }
 

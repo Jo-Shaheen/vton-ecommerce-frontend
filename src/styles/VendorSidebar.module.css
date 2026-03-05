@@ -1,4 +1,4 @@
-@import './variables.css';
+@import "./variables.css";
 
 /* ── Sidebar shell ── */
 .sidebar {
@@ -136,7 +136,7 @@
 }
 
 .navItem::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: var(--sidebar-bg-hover);
@@ -164,7 +164,7 @@
 }
 
 .navItem.active::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 50%;
@@ -251,7 +251,7 @@
 }
 
 .storeStatus::before {
-  content: '';
+  content: "";
   width: 6px;
   height: 6px;
   border-radius: var(--radius-circle);

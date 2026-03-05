@@ -14,7 +14,8 @@ const roles = [
   {
     id: "customer",
     title: "Customer",
-    description: "Browse, try on, and shop the latest fashion with virtual try-on technology.",
+    description:
+      "Browse, try on, and shop the latest fashion with virtual try-on technology.",
     icon: ShoppingBag,
     accent: "burgundy",
     link: "/browse",
@@ -22,7 +23,8 @@ const roles = [
   {
     id: "vendor",
     title: "Vendor",
-    description: "Manage your store, products, orders, and analytics all in one place.",
+    description:
+      "Manage your store, products, orders, and analytics all in one place.",
     icon: Store,
     accent: "gold",
     link: "/vendor",
@@ -30,7 +32,8 @@ const roles = [
   {
     id: "admin",
     title: "Admin",
-    description: "Full platform oversight, user management, and system configuration.",
+    description:
+      "Full platform oversight, user management, and system configuration.",
     icon: Shield,
     accent: "sage",
     link: "/admin",
@@ -38,7 +41,8 @@ const roles = [
   {
     id: "support",
     title: "Technical Support",
-    description: "Resolve tickets, assist vendors and customers with technical issues.",
+    description:
+      "Resolve tickets, assist vendors and customers with technical issues.",
     icon: Headphones,
     accent: "purple",
     link: "/support",
@@ -50,13 +54,23 @@ export default function RoleSelectorModal({ onClose }) {
     <div className={styles.overlay}>
       <div className={styles.modal}>
         {/* Close button */}
-        <button className={styles.closeBtn} onClick={onClose} aria-label="Close">
+        <button
+          className={styles.closeBtn}
+          onClick={onClose}
+          aria-label="Close"
+        >
           <X size={20} />
         </button>
 
         {/* Header */}
         <div className={styles.header}>
-          <AinaiLogo size="md" variant="light" showArabic={false} showTagline={false} animated={false} />
+          <AinaiLogo
+            size="md"
+            variant="light"
+            showArabic={false}
+            showTagline={false}
+            animated={false}
+          />
           <div className={styles.headerText}>
             <h1 className={styles.title}>
               <Sparkles size={20} className={styles.sparkle} />

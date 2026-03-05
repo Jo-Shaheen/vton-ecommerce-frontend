@@ -107,7 +107,9 @@ export default function VendorTicketsPage() {
           <div className={styles.pageHead}>
             <div>
               <h1 className={styles.pageTitle}>Support Tickets</h1>
-              <p className={styles.pageSubtitle}>Manage your support requests</p>
+              <p className={styles.pageSubtitle}>
+                Manage your support requests
+              </p>
             </div>
             <button className={styles.issueBtn}>
               <Plus size={16} />
@@ -143,7 +145,11 @@ export default function VendorTicketsPage() {
           {/* Search bar */}
           <div className={styles.searchBox}>
             <Search size={16} className={styles.searchIcon} />
-            <input type="text" placeholder="Search tickets..." className={styles.searchInput} />
+            <input
+              type="text"
+              placeholder="Search tickets..."
+              className={styles.searchInput}
+            />
           </div>
 
           {/* Ticket list */}
@@ -153,21 +159,29 @@ export default function VendorTicketsPage() {
               return (
                 <article key={t.id} className={styles.ticketCard}>
                   <div className={styles.ticketLeft}>
-                    <div className={`${styles.statusDot} ${styles[statusClass[t.status]]}`}>
+                    <div
+                      className={`${styles.statusDot} ${styles[statusClass[t.status]]}`}
+                    >
                       <StatusIcon size={16} />
                     </div>
                     <div className={styles.ticketInfo}>
                       <div className={styles.ticketTop}>
                         <span className={styles.ticketId}>{t.id}</span>
-                        <span className={`${styles.priorityBadge} ${styles[priorityClass[t.priority]]}`}>
+                        <span
+                          className={`${styles.priorityBadge} ${styles[priorityClass[t.priority]]}`}
+                        >
                           {t.priority}
                         </span>
                         <span className={styles.categoryTag}>{t.category}</span>
                       </div>
                       <h3 className={styles.ticketSubject}>{t.subject}</h3>
                       <div className={styles.ticketMeta}>
-                        <span><Clock size={12} /> Created {t.created}</span>
-                        <span><MessageSquare size={12} /> {t.replies} replies</span>
+                        <span>
+                          <Clock size={12} /> Created {t.created}
+                        </span>
+                        <span>
+                          <MessageSquare size={12} /> {t.replies} replies
+                        </span>
                         <span>Last reply {t.lastReply}</span>
                       </div>
                     </div>

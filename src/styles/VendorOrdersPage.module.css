@@ -1,4 +1,4 @@
-@import './variables.css';
+@import "./variables.css";
 
 /* ── Layout ── */
 .layout {
@@ -116,7 +116,8 @@
 
 .searchInput {
   width: 100%;
-  padding: var(--space-2) var(--space-4) var(--space-2) calc(var(--space-3) + 20px);
+  padding: var(--space-2) var(--space-4) var(--space-2)
+    calc(var(--space-3) + 20px);
   border: 1px solid var(--ivory-dark);
   border-radius: var(--radius-pill);
   font-family: var(--font-sans);
@@ -165,7 +166,9 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   padding: var(--space-5) var(--space-6);
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
 .orderCard:hover {
@@ -204,11 +207,26 @@
   letter-spacing: var(--tracking-wide);
 }
 
-.pending    { background: var(--status-pending-bg);    color: var(--status-pending); }
-.processing { background: var(--status-processing-bg); color: var(--status-processing); }
-.shipped    { background: var(--status-shipped-bg);    color: var(--status-shipped); }
-.delivered  { background: var(--status-delivered-bg);  color: var(--status-delivered); }
-.cancelled  { background: var(--status-cancelled-bg);  color: var(--status-cancelled); }
+.pending {
+  background: var(--status-pending-bg);
+  color: var(--status-pending);
+}
+.processing {
+  background: var(--status-processing-bg);
+  color: var(--status-processing);
+}
+.shipped {
+  background: var(--status-shipped-bg);
+  color: var(--status-shipped);
+}
+.delivered {
+  background: var(--status-delivered-bg);
+  color: var(--status-delivered);
+}
+.cancelled {
+  background: var(--status-cancelled-bg);
+  color: var(--status-cancelled);
+}
 
 .viewBtn {
   display: inline-flex;

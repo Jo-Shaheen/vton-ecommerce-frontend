@@ -14,16 +14,16 @@ import AinaiLogo from "../common/AinaiLogo";
 import styles from "../../styles/VendorSidebar.module.css";
 
 const navItems = [
-  { icon: LayoutDashboard, label: "Dashboard",  to: "/vendor" },
-  { icon: Package,         label: "My Products", to: "/vendor/products" },
-  { icon: ClipboardList,   label: "Orders",      to: "/vendor/orders" },
-  { icon: BarChart3,       label: "Analytics",   to: "/vendor/analytics" },
-  { icon: TicketCheck,     label: "Tickets",     to: "/vendor/tickets" },
+  { icon: LayoutDashboard, label: "Dashboard", to: "/vendor" },
+  { icon: Package, label: "My Products", to: "/vendor/products" },
+  { icon: ClipboardList, label: "Orders", to: "/vendor/orders" },
+  { icon: BarChart3, label: "Analytics", to: "/vendor/analytics" },
+  { icon: TicketCheck, label: "Tickets", to: "/vendor/tickets" },
 ];
 
 const bottomItems = [
   { icon: Settings, label: "Settings", to: "/vendor/settings" },
-  { icon: LogOut,   label: "Logout",   to: "/auth" },
+  { icon: LogOut, label: "Logout", to: "/auth" },
 ];
 
 export default function VendorSidebar({ collapsed, activeRoute }) {
@@ -35,7 +35,12 @@ export default function VendorSidebar({ collapsed, activeRoute }) {
           {collapsed ? (
             <Store size={24} className={styles.brandIconOnly} />
           ) : (
-            <AinaiLogo size="sm" variant="dark" showArabic={false} showTagline={false} />
+            <AinaiLogo
+              size="sm"
+              variant="dark"
+              showArabic={false}
+              showTagline={false}
+            />
           )}
         </Link>
         <span className={styles.badge}>Vendor</span>

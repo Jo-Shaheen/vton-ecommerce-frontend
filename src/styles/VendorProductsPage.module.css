@@ -1,4 +1,4 @@
-@import './variables.css';
+@import "./variables.css";
 
 /* ── Layout (shared pattern) ── */
 .layout {
@@ -99,7 +99,8 @@
 
 .searchInput {
   width: 100%;
-  padding: var(--space-2) var(--space-4) var(--space-2) calc(var(--space-3) + 22px);
+  padding: var(--space-2) var(--space-4) var(--space-2)
+    calc(var(--space-3) + 22px);
   border: 1px solid var(--ivory-dark);
   border-radius: var(--radius-pill);
   font-family: var(--font-sans);

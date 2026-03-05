@@ -1,4 +1,4 @@
-@import './variables.css';
+@import "./variables.css";
 
 /* ── Layout ── */
 .layout {
@@ -238,7 +238,7 @@
 
 /* Grid lines */
 .barsContainer::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 25%;
   left: 0;
@@ -248,7 +248,7 @@
 }
 
 .barsContainer::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;

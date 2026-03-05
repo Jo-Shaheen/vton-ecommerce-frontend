@@ -1,4 +1,4 @@
-@import './variables.css';
+@import "./variables.css";
 
 /* ── Layout ── */
 .layout {
@@ -152,7 +152,8 @@
 
 .searchInput {
   width: 100%;
-  padding: var(--space-3) var(--space-4) var(--space-3) calc(var(--space-3) + 24px);
+  padding: var(--space-3) var(--space-4) var(--space-3)
+    calc(var(--space-3) + 24px);
   border: 1px solid var(--ivory-dark);
   border-radius: var(--radius-pill);
   font-family: var(--font-sans);
@@ -184,7 +185,9 @@
   background: var(--white);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
 .ticketCard:hover {

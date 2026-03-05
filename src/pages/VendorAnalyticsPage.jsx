@@ -15,18 +15,42 @@ import styles from "../styles/VendorAnalyticsPage.module.css";
 
 /* ── Static metrics ── */
 const keyMetrics = [
-  { label: "Conversion Rate", value: "4.2%", change: "+0.8%", trend: "up", icon: TrendingUp },
-  { label: "Avg Order Value",  value: "$312",  change: "+5.1%", trend: "up", icon: DollarSign },
-  { label: "VTON Conversion",  value: "18.7%", change: "+3.2%", trend: "up", icon: Eye },
-  { label: "Return Rate",      value: "2.1%",  change: "-1.4%", trend: "down", icon: ShoppingCart },
+  {
+    label: "Conversion Rate",
+    value: "4.2%",
+    change: "+0.8%",
+    trend: "up",
+    icon: TrendingUp,
+  },
+  {
+    label: "Avg Order Value",
+    value: "$312",
+    change: "+5.1%",
+    trend: "up",
+    icon: DollarSign,
+  },
+  {
+    label: "VTON Conversion",
+    value: "18.7%",
+    change: "+3.2%",
+    trend: "up",
+    icon: Eye,
+  },
+  {
+    label: "Return Rate",
+    value: "2.1%",
+    change: "-1.4%",
+    trend: "down",
+    icon: ShoppingCart,
+  },
 ];
 
 const topProducts = [
-  { name: "Silk Evening Gown",    views: 1240, tryOns: 312, sales: 89 },
-  { name: "Cashmere Wrap Dress",  views: 980,  tryOns: 245, sales: 67 },
-  { name: "Embroidered Kaftan",   views: 870,  tryOns: 198, sales: 54 },
-  { name: "Velvet Abaya",         views: 760,  tryOns: 176, sales: 42 },
-  { name: "Linen Palazzo Set",    views: 620,  tryOns: 134, sales: 38 },
+  { name: "Silk Evening Gown", views: 1240, tryOns: 312, sales: 89 },
+  { name: "Cashmere Wrap Dress", views: 980, tryOns: 245, sales: 67 },
+  { name: "Embroidered Kaftan", views: 870, tryOns: 198, sales: 54 },
+  { name: "Velvet Abaya", views: 760, tryOns: 176, sales: 42 },
+  { name: "Linen Palazzo Set", views: 620, tryOns: 134, sales: 38 },
 ];
 
 /* Chart bar data (visual-only percentage heights) */
@@ -52,7 +76,9 @@ export default function VendorAnalyticsPage() {
           <div className={styles.pageHead}>
             <div>
               <h1 className={styles.pageTitle}>Analytics</h1>
-              <p className={styles.pageSubtitle}>Performance overview for last 30 days</p>
+              <p className={styles.pageSubtitle}>
+                Performance overview for last 30 days
+              </p>
             </div>
             <div className={styles.dateRange}>
               <Calendar size={14} />
@@ -73,8 +99,14 @@ export default function VendorAnalyticsPage() {
                     <span className={styles.metricLabel}>{m.label}</span>
                     <div className={styles.metricBottom}>
                       <span className={styles.metricValue}>{m.value}</span>
-                      <span className={`${styles.metricBadge} ${m.trend === "up" ? styles.up : styles.down}`}>
-                        {m.trend === "up" ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
+                      <span
+                        className={`${styles.metricBadge} ${m.trend === "up" ? styles.up : styles.down}`}
+                      >
+                        {m.trend === "up" ? (
+                          <ArrowUpRight size={12} />
+                        ) : (
+                          <ArrowDownRight size={12} />
+                        )}
                         {m.change}
                       </span>
                     </div>
@@ -92,11 +124,15 @@ export default function VendorAnalyticsPage() {
                 <h2 className={styles.chartTitle}>Revenue & Orders</h2>
                 <div className={styles.legend}>
                   <span className={styles.legendItem}>
-                    <span className={`${styles.legendDot} ${styles.dotRevenue}`} />
+                    <span
+                      className={`${styles.legendDot} ${styles.dotRevenue}`}
+                    />
                     Revenue
                   </span>
                   <span className={styles.legendItem}>
-                    <span className={`${styles.legendDot} ${styles.dotOrders}`} />
+                    <span
+                      className={`${styles.legendDot} ${styles.dotOrders}`}
+                    />
                     Orders
                   </span>
                 </div>
@@ -144,16 +180,24 @@ export default function VendorAnalyticsPage() {
                     <div className={styles.topInfo}>
                       <span className={styles.topName}>{p.name}</span>
                       <div className={styles.topStats}>
-                        <span><Eye size={12} /> {p.views}</span>
-                        <span><Users size={12} /> {p.tryOns}</span>
-                        <span><ShoppingCart size={12} /> {p.sales}</span>
+                        <span>
+                          <Eye size={12} /> {p.views}
+                        </span>
+                        <span>
+                          <Users size={12} /> {p.tryOns}
+                        </span>
+                        <span>
+                          <ShoppingCart size={12} /> {p.sales}
+                        </span>
                       </div>
                     </div>
                     {/* Visual bar */}
                     <div className={styles.topBar}>
                       <div
                         className={styles.topBarFill}
-                        style={{ width: `${(p.sales / topProducts[0].sales) * 100}%` }}
+                        style={{
+                          width: `${(p.sales / topProducts[0].sales) * 100}%`,
+                        }}
                       />
                     </div>
                   </div>

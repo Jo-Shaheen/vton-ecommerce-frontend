@@ -1,11 +1,4 @@
-import {
-  Bell,
-  Search,
-  Menu,
-  ChevronDown,
-  Sun,
-  Moon,
-} from "lucide-react";
+import { Bell, Search, Menu, ChevronDown, Sun, Moon } from "lucide-react";
 import styles from "../../styles/VendorHeader.module.css";
 
 export default function VendorHeader({ onMenuToggle }) {
@@ -13,7 +6,11 @@ export default function VendorHeader({ onMenuToggle }) {
     <header className={styles.header}>
       {/* Left: hamburger + page title area */}
       <div className={styles.left}>
-        <button className={styles.menuBtn} onClick={onMenuToggle} aria-label="Toggle menu">
+        <button
+          className={styles.menuBtn}
+          onClick={onMenuToggle}
+          aria-label="Toggle menu"
+        >
           <Menu size={20} />
         </button>
 

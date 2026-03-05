@@ -16,19 +16,91 @@ import styles from "../styles/VendorProductsPage.module.css";
 
 /* ── Static demo data ── */
 const products = [
-  { id: 1, name: "Silk Evening Gown",       category: "Dresses",     price: "$389.00", stock: 24, status: "Active",   vtonEnabled: true,  image: "" },
-  { id: 2, name: "Cashmere Wrap Dress",     category: "Dresses",     price: "$275.00", stock: 18, status: "Active",   vtonEnabled: true,  image: "" },
-  { id: 3, name: "Embroidered Kaftan",      category: "Traditional", price: "$450.00", stock: 7,  status: "Active",   vtonEnabled: false, image: "" },
-  { id: 4, name: "Linen Palazzo Set",       category: "Casual",      price: "$195.00", stock: 0,  status: "Out of Stock", vtonEnabled: true, image: "" },
-  { id: 5, name: "Beaded Clutch Bag",       category: "Accessories", price: "$120.00", stock: 42, status: "Active",   vtonEnabled: false, image: "" },
-  { id: 6, name: "Velvet Abaya",            category: "Traditional", price: "$520.00", stock: 12, status: "Draft",    vtonEnabled: true,  image: "" },
-  { id: 7, name: "Satin Blazer",            category: "Outerwear",   price: "$310.00", stock: 15, status: "Active",   vtonEnabled: true,  image: "" },
-  { id: 8, name: "Pearl Drop Earrings",     category: "Accessories", price: "$85.00",  stock: 60, status: "Active",   vtonEnabled: false, image: "" },
+  {
+    id: 1,
+    name: "Silk Evening Gown",
+    category: "Dresses",
+    price: "$389.00",
+    stock: 24,
+    status: "Active",
+    vtonEnabled: true,
+    image: "",
+  },
+  {
+    id: 2,
+    name: "Cashmere Wrap Dress",
+    category: "Dresses",
+    price: "$275.00",
+    stock: 18,
+    status: "Active",
+    vtonEnabled: true,
+    image: "",
+  },
+  {
+    id: 3,
+    name: "Embroidered Kaftan",
+    category: "Traditional",
+    price: "$450.00",
+    stock: 7,
+    status: "Active",
+    vtonEnabled: false,
+    image: "",
+  },
+  {
+    id: 4,
+    name: "Linen Palazzo Set",
+    category: "Casual",
+    price: "$195.00",
+    stock: 0,
+    status: "Out of Stock",
+    vtonEnabled: true,
+    image: "",
+  },
+  {
+    id: 5,
+    name: "Beaded Clutch Bag",
+    category: "Accessories",
+    price: "$120.00",
+    stock: 42,
+    status: "Active",
+    vtonEnabled: false,
+    image: "",
+  },
+  {
+    id: 6,
+    name: "Velvet Abaya",
+    category: "Traditional",
+    price: "$520.00",
+    stock: 12,
+    status: "Draft",
+    vtonEnabled: true,
+    image: "",
+  },
+  {
+    id: 7,
+    name: "Satin Blazer",
+    category: "Outerwear",
+    price: "$310.00",
+    stock: 15,
+    status: "Active",
+    vtonEnabled: true,
+    image: "",
+  },
+  {
+    id: 8,
+    name: "Pearl Drop Earrings",
+    category: "Accessories",
+    price: "$85.00",
+    stock: 60,
+    status: "Active",
+    vtonEnabled: false,
+    image: "",
+  },
 ];
 
 const statusMap = {
-  Active:       "active",
-  Draft:        "draft",
+  Active: "active",
+  Draft: "draft",
   "Out of Stock": "outOfStock",
 };
 
@@ -45,7 +117,9 @@ export default function VendorProductsPage() {
           <div className={styles.pageHead}>
             <div>
               <h1 className={styles.pageTitle}>My Products</h1>
-              <p className={styles.pageSubtitle}>{products.length} products in your store</p>
+              <p className={styles.pageSubtitle}>
+                {products.length} products in your store
+              </p>
             </div>
             <button className={styles.addBtn}>
               <Plus size={16} />
@@ -118,13 +192,17 @@ export default function VendorProductsPage() {
                         </span>
                       </td>
                       <td>
-                        <span className={`${styles.statusBadge} ${styles[statusMap[p.status]]}`}>
+                        <span
+                          className={`${styles.statusBadge} ${styles[statusMap[p.status]]}`}
+                        >
                           {p.status}
                         </span>
                       </td>
                       <td>
                         {p.vtonEnabled ? (
-                          <span className={styles.vtonOn}><Eye size={14} /> On</span>
+                          <span className={styles.vtonOn}>
+                            <Eye size={14} /> On
+                          </span>
                         ) : (
                           <span className={styles.vtonOff}>Off</span>
                         )}
@@ -134,7 +212,10 @@ export default function VendorProductsPage() {
                           <button className={styles.actionBtn} title="Edit">
                             <Edit3 size={15} />
                           </button>
-                          <button className={`${styles.actionBtn} ${styles.deleteBtn}`} title="Delete">
+                          <button
+                            className={`${styles.actionBtn} ${styles.deleteBtn}`}
+                            title="Delete"
+                          >
                             <Trash2 size={15} />
                           </button>
                           <button className={styles.actionBtn} title="More">
@@ -150,10 +231,16 @@ export default function VendorProductsPage() {
 
             {/* Pagination placeholder */}
             <div className={styles.pagination}>
-              <span className={styles.pageInfo}>Showing 1-8 of {products.length} products</span>
+              <span className={styles.pageInfo}>
+                Showing 1-8 of {products.length} products
+              </span>
               <div className={styles.pageButtons}>
-                <button className={styles.pageBtn} disabled>Previous</button>
-                <button className={`${styles.pageBtn} ${styles.pageBtnActive}`}>1</button>
+                <button className={styles.pageBtn} disabled>
+                  Previous
+                </button>
+                <button className={`${styles.pageBtn} ${styles.pageBtnActive}`}>
+                  1
+                </button>
                 <button className={styles.pageBtn}>2</button>
                 <button className={styles.pageBtn}>Next</button>
               </div>
