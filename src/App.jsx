@@ -7,6 +7,11 @@ import AuthPage from "./pages/AuthPage";
 import Landingpage from "./pages/Landingpage";
 import TryOnHistoryPage from "./pages/TryOnHistoryPage";
 import DashboardPage from "./pages/DashboardPage";
+import VendorDashboardPage from "./pages/VendorDashboardPage";
+import VendorProductsPage from "./pages/VendorProductsPage";
+import VendorOrdersPage from "./pages/VendorOrdersPage";
+import VendorAnalyticsPage from "./pages/VendorAnalyticsPage";
+import VendorTicketsPage from "./pages/VendorTicketsPage";
 
 function App() {
   return (
@@ -19,6 +24,11 @@ function App() {
       <Route path="/landing" element={<Landingpage />} />
       <Route path="/try-on-history" element={<TryOnHistoryPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/vendor" element={<VendorDashboardPage />} />
+      <Route path="/vendor/products" element={<VendorProductsPage />} />
+      <Route path="/vendor/orders" element={<VendorOrdersPage />} />
+      <Route path="/vendor/analytics" element={<VendorAnalyticsPage />} />
+      <Route path="/vendor/tickets" element={<VendorTicketsPage />} />
     </Routes>
   );
 }

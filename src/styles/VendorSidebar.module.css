@@ -1,0 +1,297 @@
+@import './variables.css';
+
+/* ── Sidebar shell ── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5) 0;
+  z-index: var(--z-sticky);
+  transition: width var(--transition-base);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar.collapsed {
+  width: var(--sidebar-width-collapsed);
+}
+
+/* ── Brand area ── */
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-5) var(--space-4);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.brandLink {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.brandIconOnly {
+  color: var(--gold);
+}
+
+.badge {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--charcoal);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  position: absolute;
+  top: -2px;
+  right: var(--space-5);
+}
+
+.collapsed .badge {
+  display: none;
+}
+
+/* ── Collapse button ── */
+.collapseBtn {
+  position: absolute;
+  top: var(--space-5);
+  right: calc(-1 * var(--space-3));
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-circle);
+  background: var(--sidebar-bg);
+  border: 1px solid var(--sidebar-divider);
+  color: var(--sidebar-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: calc(var(--z-sticky) + 1);
+}
+
+.collapseBtn:hover {
+  background: var(--sidebar-bg-hover);
+  color: var(--gold);
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: var(--sidebar-divider);
+  margin: var(--space-3) var(--space-5);
+  flex-shrink: 0;
+}
+
+/* ── Navigation ── */
+.nav,
+.bottomNav {
+  padding: var(--space-2) var(--space-3);
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--sidebar-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.navItem::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--sidebar-bg-hover);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  border-radius: inherit;
+}
+
+.navItem:hover::before {
+  opacity: 1;
+}
+
+.navItem:hover {
+  color: var(--white);
+}
+
+/* Active state */
+.navItem.active {
+  color: var(--sidebar-text-active);
+  background: var(--sidebar-bg-active);
+}
+
+.navItem.active .navIcon {
+  color: var(--gold);
+}
+
+.navItem.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: var(--gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* Logout */
+.navItem.logout:hover {
+  color: var(--error);
+}
+
+.navIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.navLabel {
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Spacer ── */
+.spacer {
+  flex: 1;
+}
+
+/* ── Store info (bottom pill) ── */
+.storeInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-4) var(--space-4) var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--sidebar-bg-hover);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.storeAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-circle);
+  background: var(--gold);
+  color: var(--charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.storeDetails {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.storeName {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.storeStatus {
+  font-size: var(--text-xs);
+  color: var(--status-delivered);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.storeStatus::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-circle);
+  background: var(--status-delivered);
+  display: inline-block;
+}
+
+/* ── Collapsed overrides ── */
+.collapsed .nav,
+.collapsed .bottomNav {
+  padding: var(--space-2);
+}
+
+.collapsed .navItem {
+  justify-content: center;
+  padding: var(--space-3);
+}
+
+.collapsed .navItem.active::after {
+  display: none;
+}
+
+/* Tooltip on hover when collapsed */
+.collapsed .navItem[title] {
+  position: relative;
+}
+
+/* ── Responsive: mobile drawer overlay ── */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: var(--sidebar-width);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .collapseBtn {
+    display: none;
+  }
+}

@@ -138,4 +138,48 @@
   --opacity-disabled:  0.45;   /* disabled Generate button state */
   --opacity-muted:     0.65;
   --opacity-subtle:    0.80;
+
+  /* ── VENDOR / DASHBOARD ── */
+
+  /* Sidebar */
+  --sidebar-bg:          #2C2226;
+  --sidebar-bg-hover:    rgba(212, 175, 122, 0.10);
+  --sidebar-bg-active:   rgba(212, 175, 122, 0.18);
+  --sidebar-text:        rgba(255, 255, 255, 0.65);
+  --sidebar-text-active: var(--gold);
+  --sidebar-divider:     rgba(255, 255, 255, 0.08);
+  --sidebar-width-collapsed: 72px;
+
+  /* Status badges */
+  --status-pending:      #F0AD4E;
+  --status-pending-bg:   rgba(240, 173, 78, 0.12);
+  --status-processing:   #5BC0DE;
+  --status-processing-bg:rgba(91, 192, 222, 0.12);
+  --status-shipped:      #8B4852;
+  --status-shipped-bg:   rgba(139, 72, 82, 0.12);
+  --status-delivered:    #5CB85C;
+  --status-delivered-bg: rgba(92, 184, 92, 0.12);
+  --status-cancelled:    #D9534F;
+  --status-cancelled-bg: rgba(217, 83, 79, 0.12);
+  --status-open:         #5BC0DE;
+  --status-open-bg:      rgba(91, 192, 222, 0.12);
+  --status-closed:       var(--charcoal-muted);
+  --status-closed-bg:    rgba(138, 125, 118, 0.12);
+
+  /* Stat card accents */
+  --stat-sales:          var(--burgundy);
+  --stat-orders:         var(--gold);
+  --stat-vton:           var(--sage);
+  --stat-revenue:        #6C5B7B;
+
+  /* Chart placeholder */
+  --chart-bg:            rgba(247, 243, 237, 0.5);
+  --chart-grid:          rgba(58, 48, 43, 0.06);
+  --chart-bar-1:         var(--burgundy);
+  --chart-bar-2:         var(--gold);
+  --chart-bar-3:         var(--sage);
+
+  /* Vendor layout */
+  --vendor-topbar-height: 68px;
+  --vendor-content-bg:    #FAF8F5;
 }
