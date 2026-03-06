@@ -63,9 +63,10 @@ function VtonContent({ product, onClose }) {
 
   function handleDownload() {
     if (!resultUrl) return;
+    const safeName = (product?.name || "result").replace(/[^a-zA-Z0-9_-]/g, "_");
     const link = document.createElement("a");
     link.href = resultUrl;
-    link.download = `ainai-tryon-${product?.name || "result"}.png`;
+    link.download = `ainai-tryon-${safeName}.svg`;
     link.click();
   }
 

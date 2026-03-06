@@ -71,7 +71,8 @@ export function saveTryOnHistory(history) {
 
 export function addTryOnEntry(entry) {
   const history = getTryOnHistory();
-  history.unshift({ ...entry, id: Date.now(), createdAt: new Date().toISOString() });
+  const id = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+  history.unshift({ ...entry, id, createdAt: new Date().toISOString() });
   safeSet(KEYS.TRYON_HISTORY, history);
 }
 

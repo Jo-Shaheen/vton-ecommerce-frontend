@@ -9,7 +9,9 @@ import { getAuth, saveAuth, clearAuth } from "../utils/localStorage";
 
 const AuthContext = createContext(null);
 
-// Fake user database for demo (no real backend)
+// Fake user database for demo – passwords are stored in plain text for
+// demonstration purposes ONLY. A real application must hash passwords
+// server-side (e.g. bcrypt) and never store them on the client.
 const DEMO_USERS = [
   { email: "demo@ainai.com", password: "demo123", name: "Fatima Al-Salem" },
 ];

@@ -101,7 +101,7 @@ export default function TryOnHistory() {
               {entry.resultUrl && (
                 <a
                   href={entry.resultUrl}
-                  download={`ainai-tryon-${entry.id}.jpg`}
+                  download={`ainai-tryon-${entry.id}.svg`}
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
