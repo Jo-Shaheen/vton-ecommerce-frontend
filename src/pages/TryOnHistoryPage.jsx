@@ -3,6 +3,7 @@ import Footer from '../components/common/Footer';
 import TryOnHistory from '../components/vton/TryOnHistory';
 import styles from '../styles/TryOnHistoryPage.module.css';
 
+
 // Mock try-on history
 const mockHistory = [
   {

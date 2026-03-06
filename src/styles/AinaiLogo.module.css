@@ -34,7 +34,7 @@
 }
 
 .eyeRight {
-  transform: rotate(135deg);
+  transform: rotate(45deg);
 }
 
 .pupil {
@@ -71,13 +71,13 @@
 
 @keyframes blinkRightAnim {
   0% {
-    transform: rotate(135deg) scaleY(1);
+    transform: rotate(45deg) scaleY(1);
   }
   50% {
-    transform: rotate(135deg) scaleY(0.1);
+    transform: rotate(45deg) scaleY(0.1);
   }
   100% {
-    transform: rotate(135deg) scaleY(1);
+    transform: rotate(45deg) scaleY(1);
   }
 }
 
