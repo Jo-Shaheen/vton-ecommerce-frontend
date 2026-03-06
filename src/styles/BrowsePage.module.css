@@ -1,0 +1,19 @@
+@import './variables.css';
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.browseContainer {
+  display: flex;
+  flex: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .browseContainer {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,334 @@
+@import "./variables.css";
+
+/* ══════════════════════════════════════
+   AinaiLogo – matches ayyinai-logo-demo.html
+   ══════════════════════════════════════ */
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+/* ── Eye Container ── */
+.eyeContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Single Eye (almond shape via border-radius: 50% 0) ── */
+.eye {
+  background: var(--burgundy);
+  border-radius: 50% 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eyeLeft {
+  transform: rotate(45deg);
+}
+
+.eyeRight {
+  transform: rotate(45deg);
+}
+
+.pupil {
+  width: 36%;
+  height: 36%;
+  background: var(--gold);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ── Blink Animation ── */
+.blink {
+  animation: blinkLeft 0.2s ease forwards;
+}
+
+.blinkRight {
+  animation: blinkRightAnim 0.2s ease forwards;
+}
+
+@keyframes blinkLeft {
+  0% {
+    transform: rotate(45deg) scaleY(1);
+  }
+  50% {
+    transform: rotate(45deg) scaleY(0.1);
+  }
+  100% {
+    transform: rotate(45deg) scaleY(1);
+  }
+}
+
+@keyframes blinkRightAnim {
+  0% {
+    transform: rotate(45deg) scaleY(1);
+  }
+  50% {
+    transform: rotate(45deg) scaleY(0.1);
+  }
+  100% {
+    transform: rotate(45deg) scaleY(1);
+  }
+}
+
+/* ── Text ── */
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.brandText {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: 2px;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.arabicText {
+  color: var(--burgundy);
+  font-family: "Arial", sans-serif;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+.tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--charcoal);
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* ══════════════════════
+   SIZE VARIANTS
+   ══════════════════════ */
+
+/* sm – for footer, compact spaces */
+.size_sm .eyeContainer {
+  width: 40px;
+  height: 40px;
+}
+
+.size_sm .eye {
+  width: 18px;
+  height: 18px;
+}
+
+.size_sm .eyeLeft {
+  position: absolute;
+  left: 2px;
+  top: 11px;
+}
+
+.size_sm .eyeRight {
+  position: absolute;
+  right: 2px;
+  top: 11px;
+}
+
+.size_sm .brandText {
+  font-size: 1.2rem;
+}
+
+.size_sm .arabicText {
+  font-size: 0.65rem;
+}
+
+.size_sm .tagline {
+  font-size: 0.65rem;
+}
+
+/* md – for header nav bar */
+.size_md .eyeContainer {
+  width: 48px;
+  height: 48px;
+}
+
+.size_md .eye {
+  width: 22px;
+  height: 22px;
+}
+
+.size_md .eyeLeft {
+  position: absolute;
+  left: 2px;
+  top: 13px;
+}
+
+.size_md .eyeRight {
+  position: absolute;
+  right: 2px;
+  top: 13px;
+}
+
+.size_md .brandText {
+  font-size: 1.6rem;
+}
+
+.size_md .arabicText {
+  font-size: 0.75rem;
+}
+
+.size_md .tagline {
+  font-size: 0.8rem;
+}
+
+/* lg – for auth page brand panel */
+.size_lg .eyeContainer {
+  width: 80px;
+  height: 80px;
+}
+
+.size_lg .eye {
+  width: 35px;
+  height: 35px;
+}
+
+.size_lg .eyeLeft {
+  position: absolute;
+  left: 5px;
+  top: 22px;
+}
+
+.size_lg .eyeRight {
+  position: absolute;
+  right: 5px;
+  top: 22px;
+}
+
+.size_lg .brandText {
+  font-size: 2.5rem;
+}
+
+.size_lg .arabicText {
+  font-size: 1.1rem;
+}
+
+.size_lg .tagline {
+  font-size: 1rem;
+}
+
+/* xl – for hero / showcase */
+.size_xl .logoWrapper {
+  flex-direction: column;
+}
+
+.size_xl .eyeContainer {
+  width: 120px;
+  height: 120px;
+}
+
+.size_xl .eye {
+  width: 50px;
+  height: 50px;
+}
+
+.size_xl .eyeLeft {
+  position: absolute;
+  left: 10px;
+  top: 35px;
+}
+
+.size_xl .eyeRight {
+  position: absolute;
+  right: 10px;
+  top: 35px;
+}
+
+.size_xl .brandText {
+  font-size: 4rem;
+}
+
+.size_xl .arabicText {
+  font-size: 1.5rem;
+}
+
+.size_xl .tagline {
+  font-size: 1.125rem;
+}
+
+/* ══════════════════════
+   COLOR VARIANTS
+   ══════════════════════ */
+
+/* light – default, for ivory/white backgrounds */
+.variant_light .brandText {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.variant_light .arabicText {
+  color: var(--burgundy);
+}
+
+.variant_light .tagline {
+  color: var(--charcoal);
+}
+
+/* dark – for dark backgrounds (charcoal, dark panels) */
+.variant_dark .eye {
+  background: var(--gold);
+}
+
+.variant_dark .pupil {
+  background: var(--ivory);
+}
+
+.variant_dark .brandText {
+  background: linear-gradient(135deg, var(--ivory) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.variant_dark .arabicText {
+  color: var(--gold-light);
+  opacity: 0.7;
+}
+
+.variant_dark .tagline {
+  color: var(--ivory);
+  opacity: 0.7;
+}
+
+/* colored – for burgundy backgrounds */
+.variant_colored .eye {
+  background: var(--ivory);
+}
+
+.variant_colored .pupil {
+  background: var(--gold);
+}
+
+.variant_colored .brandText {
+  background: linear-gradient(135deg, var(--ivory) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.variant_colored .arabicText {
+  color: var(--ivory);
+  opacity: 0.7;
+}
+
+.variant_colored .tagline {
+  color: var(--ivory);
+  opacity: 0.7;
+}

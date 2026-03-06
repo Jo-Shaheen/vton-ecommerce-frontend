@@ -1,0 +1,226 @@
+@import "./variables.css";
+
+/* ── Header bar ── */
+.header {
+  height: var(--vendor-topbar-height);
+  background: var(--white);
+  border-bottom: 1px solid var(--ivory-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  gap: var(--space-4);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+}
+
+/* ── Left section ── */
+.left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1;
+  min-width: 0;
+}
+
+.menuBtn {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--ivory);
+  color: var(--charcoal);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.menuBtn:hover {
+  background: var(--ivory-dark);
+}
+
+/* ── Search box ── */
+.searchBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  left: var(--space-3);
+  color: var(--charcoal-muted);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--space-2) var(--space-10) var(--space-2)
+    calc(var(--space-3) + 22px);
+  border: 1px solid var(--ivory-dark);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--charcoal);
+  background: var(--ivory);
+  transition: all var(--transition-fast);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--burgundy-light);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(139, 72, 82, 0.08);
+}
+
+.searchInput::placeholder {
+  color: var(--charcoal-muted);
+}
+
+.kbd {
+  position: absolute;
+  right: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--white);
+  border: 1px solid var(--ivory-dark);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--charcoal-muted);
+  pointer-events: none;
+}
+
+/* ── Right section ── */
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+/* Icon buttons */
+.iconBtn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: none;
+  border: 1px solid transparent;
+  color: var(--charcoal-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.iconBtn:hover {
+  background: var(--ivory);
+  color: var(--charcoal);
+  border-color: var(--ivory-dark);
+}
+
+.notifDot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 8px;
+  height: 8px;
+  background: var(--burgundy);
+  border-radius: var(--radius-circle);
+  border: 2px solid var(--white);
+}
+
+/* ── Profile pill ── */
+.profilePill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-1) var(--space-3) var(--space-1) var(--space-1);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--ivory-dark);
+  background: var(--white);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.profilePill:hover {
+  border-color: var(--burgundy-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-circle);
+  background: var(--gradient-brand);
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.profileName {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--charcoal);
+}
+
+.profileRole {
+  font-size: 11px;
+  color: var(--charcoal-muted);
+}
+
+.chevron {
+  color: var(--charcoal-muted);
+  transition: transform var(--transition-fast);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 var(--space-4);
+  }
+
+  .menuBtn {
+    display: flex;
+  }
+
+  .searchBox {
+    flex: 1;
+  }
+
+  .kbd {
+    display: none;
+  }
+
+  .profileText {
+    display: none;
+  }
+
+  .profilePill {
+    padding: var(--space-1);
+    border-radius: var(--radius-circle);
+  }
+
+  .chevron {
+    display: none;
+  }
+}
