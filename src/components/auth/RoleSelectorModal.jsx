@@ -7,6 +7,7 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import AinaiLogo from "../common/AinaiLogo";
 import styles from "../../styles/RoleSelectorModal.module.css";
 
@@ -87,9 +88,9 @@ export default function RoleSelectorModal({ onClose }) {
           {roles.map((role) => {
             const Icon = role.icon;
             return (
-              <a
+              <Link
                 key={role.id}
-                href={role.link}
+                to={role.link}
                 className={`${styles.card} ${styles[role.accent]}`}
               >
                 {/* Decorative gradient bg */}
@@ -103,7 +104,7 @@ export default function RoleSelectorModal({ onClose }) {
                 <span className={styles.cardAction}>
                   Continue <ArrowRight size={16} />
                 </span>
-              </a>
+              </Link>
             );
           })}
         </div>

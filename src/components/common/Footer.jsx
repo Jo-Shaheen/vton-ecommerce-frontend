@@ -21,24 +21,24 @@ export default function Footer() {
           <h4 className={styles.footerHeading}>Shop</h4>
           <ul className={styles.footerLinks}>
             <li>
-              <a href="#" className={styles.footerLink}>
+              <Link to="#" className={styles.footerLink}>
                 New Arrivals
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.footerLink}>
+              <Link to="#" className={styles.footerLink}>
                 Collections
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.footerLink}>
+              <Link to="#" className={styles.footerLink}>
                 Sale
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.footerLink}>
+              <Link to="#" className={styles.footerLink}>
                 About
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -48,24 +48,24 @@ export default function Footer() {
           <h4 className={styles.footerHeading}>Help</h4>
           <ul className={styles.footerLinks}>
             <li>
-              <a href="#" className={styles.footerLink}>
+              <Link to="#" className={styles.footerLink}>
                 Contact
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.footerLink}>
+              <Link to="#" className={styles.footerLink}>
                 Shipping
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.footerLink}>
+              <Link to="#" className={styles.footerLink}>
                 Returns
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.footerLink}>
+              <Link to="#" className={styles.footerLink}>
                 FAQ
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -75,19 +75,19 @@ export default function Footer() {
           <h4 className={styles.footerHeading}>Legal</h4>
           <ul className={styles.footerLinks}>
             <li>
-              <a href="#" className={styles.footerLink}>
+              <Link to="#" className={styles.footerLink}>
                 Privacy
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.footerLink}>
+              <Link to="#" className={styles.footerLink}>
                 Terms
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.footerLink}>
+              <Link to="#" className={styles.footerLink}>
                 Cookies
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

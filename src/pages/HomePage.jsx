@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import styles from '../styles/HomePage.module.css';
@@ -18,9 +19,9 @@ export default function HomePage() {
             Perfect your style before you buy.
           </p>
           <div className={styles.heroCTA}>
-            <a href="/browse" className={styles.primaryButton}>
+            <Link to="/browse" className={styles.primaryButton}>
               Start Exploring
-            </a>
+            </Link>
             <a href="#features" className={styles.secondaryButton}>
               Learn More
             </a>
@@ -79,9 +80,9 @@ export default function HomePage() {
           <p className={styles.ctaDescription}>
             Join thousands of fashion enthusiasts discovering their perfect look.
           </p>
-          <a href="/browse" className={styles.ctaButton}>
+          <Link to="/browse" className={styles.ctaButton}>
             Start Your Journey
-          </a>
+          </Link>
         </div>
       </section>
 

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import styles from '../styles/DashboardPage.module.css';
@@ -22,7 +23,7 @@ export default function DashboardPage() {
               <div className={styles.cardIcon}>👤</div>
               <h3 className={styles.cardTitle}>My Account</h3>
               <p className={styles.cardDescription}>View and update your profile information</p>
-              <a href="#" className={styles.cardLink}>Manage Account</a>
+              <Link to="#" className={styles.cardLink}>Manage Account</Link>
             </div>
 
             {/* Card 2: Orders */}
@@ -30,7 +31,7 @@ export default function DashboardPage() {
               <div className={styles.cardIcon}>📦</div>
               <h3 className={styles.cardTitle}>My Orders</h3>
               <p className={styles.cardDescription}>Track your orders and view history</p>
-              <a href="#" className={styles.cardLink}>View Orders</a>
+              <Link to="#" className={styles.cardLink}>View Orders</Link>
             </div>
 
             {/* Card 3: Favorites */}
@@ -38,7 +39,7 @@ export default function DashboardPage() {
               <div className={styles.cardIcon}>❤️</div>
               <h3 className={styles.cardTitle}>Saved Items</h3>
               <p className={styles.cardDescription}>Access your favorite pieces</p>
-              <a href="#" className={styles.cardLink}>View Saved</a>
+              <Link to="#" className={styles.cardLink}>View Saved</Link>
             </div>
 
             {/* Card 4: Try-On History */}
@@ -46,7 +47,7 @@ export default function DashboardPage() {
               <div className={styles.cardIcon}>📸</div>
               <h3 className={styles.cardTitle}>Try-On History</h3>
               <p className={styles.cardDescription}>Review your virtual try-ons</p>
-              <a href="/try-on-history" className={styles.cardLink}>View History</a>
+              <Link to="/try-on-history" className={styles.cardLink}>View History</Link>
             </div>
 
             {/* Card 5: Addresses */}
@@ -54,7 +55,7 @@ export default function DashboardPage() {
               <div className={styles.cardIcon}>🏠</div>
               <h3 className={styles.cardTitle}>Addresses</h3>
               <p className={styles.cardDescription}>Manage your shipping addresses</p>
-              <a href="#" className={styles.cardLink}>Manage Addresses</a>
+              <Link to="#" className={styles.cardLink}>Manage Addresses</Link>
             </div>
 
             {/* Card 6: Settings */}
@@ -62,7 +63,7 @@ export default function DashboardPage() {
               <div className={styles.cardIcon}>⚙️</div>
               <h3 className={styles.cardTitle}>Settings</h3>
               <p className={styles.cardDescription}>Update preferences and notifications</p>
-              <a href="#" className={styles.cardLink}>Go to Settings</a>
+              <Link to="#" className={styles.cardLink}>Go to Settings</Link>
             </div>
           </div>
 

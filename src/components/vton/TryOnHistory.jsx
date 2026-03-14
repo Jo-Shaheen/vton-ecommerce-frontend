@@ -1,4 +1,5 @@
 import { Trash2, Eye } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import styles from '../../styles/TryOnHistory.module.css';
 
 export default function TryOnHistory({ items = [] }) {
@@ -19,9 +20,9 @@ export default function TryOnHistory({ items = [] }) {
         <p className={styles.emptyMessage}>
           Start exploring our collection and create your first virtual try-on!
         </p>
-        <a href="/browse" className={styles.browseButton}>
+        <Link to="/browse" className={styles.browseButton}>
           Browse Collection
-        </a>
+        </Link>
       </div>
     );
   }
