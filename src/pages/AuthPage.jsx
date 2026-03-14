@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, User, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import AinaiLogo from "../components/common/AinaiLogo";
 import styles from "../styles/AuthPage.module.css";
+import { loginUser, registerUser } from "../utils/authFunctions";
+import { useAuth } from "../context/AuthContext";
 
 /* ─────────────────────────────────────────────
-   AuthPage – Login / Sign-Up (design only)
-   Hook up your auth logic to the form handlers
-   marked with TODO comments below.
+   AuthPage – Login / Sign-Up
+   Auth logic wired to form handlers below.
 ───────────────────────────────────────────── */
 
 export default function AuthPage() {
@@ -15,15 +16,67 @@ export default function AuthPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // TODO: wire up your auth logic here
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    // Your login logic
+  // Login form state
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const [loginMessage, setLoginMessage] = useState("");
+  const [loginLoading, setLoginLoading] = useState(false);
+
+  // Signup form state
+  const [signupData, setSignupData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [signupMessage, setSignupMessage] = useState("");
+  const [signupLoading, setSignupLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const { login: _login } = useAuth();
+
+  const handleLoginChange = (e) => {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  const handleSignupSubmit = (e) => {
+  const handleSignupChange = (e) => {
+    setSignupData({ ...signupData, [e.target.name]: e.target.value });
+  };
+
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    // Your signup logic
+    setLoginLoading(true);
+    setLoginMessage("");
+    const result = await loginUser(loginData.email, loginData.password);
+    setLoginMessage(result.output);
+    if (result.status) {
+      // Placeholder: Set user and token from API response
+      // login({ email: loginData.email }, result.token);
+      navigate("/profile");
+    }
+    setLoginLoading(false);
+  };
+
+  const handleSignupSubmit = async (e) => {
+    e.preventDefault();
+    setSignupLoading(true);
+    setSignupMessage("");
+    if (signupData.password !== signupData.confirmPassword) {
+      setSignupMessage("Passwords do not match.");
+      setSignupLoading(false);
+      return;
+    }
+    const result = await registerUser(
+      signupData.name,
+      signupData.email,
+      signupData.password,
+    );
+    setSignupMessage(result.output);
+    if (result.status) {
+      // Placeholder: Set user and token from API response
+      // login({ name: signupData.name }, result.token);
+      navigate("/profile");
+    }
+    setSignupLoading(false);
   };
 
   return (
@@ -104,7 +157,10 @@ export default function AuthPage() {
                     <Mail className={styles.inputIcon} size={20} />
                     <input
                       id="login-email"
+                      name="email"
                       type="email"
+                      value={loginData.email}
+                      onChange={handleLoginChange}
                       placeholder="your@email.com"
                       className={styles.input}
                     />
@@ -120,7 +176,10 @@ export default function AuthPage() {
                     <Lock className={styles.inputIcon} size={20} />
                     <input
                       id="login-password"
+                      name="password"
                       type={showPassword ? "text" : "password"}
+                      value={loginData.password}
+                      onChange={handleLoginChange}
                       placeholder="Enter your password"
                       className={styles.input}
                     />
@@ -147,10 +206,16 @@ export default function AuthPage() {
                 </div>
 
                 {/* Submit */}
-                <button type="submit" className={styles.submitButton}>
-                  Sign In
+                <button
+                  type="submit"
+                  disabled={loginLoading}
+                  className={styles.submitButton}
+                >
+                  {loginLoading ? "Signing In..." : "Sign In"}
                 </button>
               </form>
+
+              {loginMessage && <p>{loginMessage}</p>}
 
               {/* Divider */}
               <div className={styles.divider}>
@@ -227,7 +292,10 @@ export default function AuthPage() {
                     <User className={styles.inputIcon} size={20} />
                     <input
                       id="signup-name"
+                      name="name"
                       type="text"
+                      value={signupData.name}
+                      onChange={handleSignupChange}
                       placeholder="Your full name"
                       className={styles.input}
                     />
@@ -243,7 +311,10 @@ export default function AuthPage() {
                     <Mail className={styles.inputIcon} size={20} />
                     <input
                       id="signup-email"
+                      name="email"
                       type="email"
+                      value={signupData.email}
+                      onChange={handleSignupChange}
                       placeholder="your@email.com"
                       className={styles.input}
                     />
@@ -259,7 +330,10 @@ export default function AuthPage() {
                     <Lock className={styles.inputIcon} size={20} />
                     <input
                       id="signup-password"
+                      name="password"
                       type={showPassword ? "text" : "password"}
+                      value={signupData.password}
+                      onChange={handleSignupChange}
                       placeholder="Create a strong password"
                       className={styles.input}
                     />
@@ -283,7 +357,10 @@ export default function AuthPage() {
                     <Lock className={styles.inputIcon} size={20} />
                     <input
                       id="signup-confirm"
+                      name="confirmPassword"
                       type={showConfirmPassword ? "text" : "password"}
+                      value={signupData.confirmPassword}
+                      onChange={handleSignupChange}
                       placeholder="Confirm your password"
                       className={styles.input}
                     />
@@ -322,10 +399,16 @@ export default function AuthPage() {
                 </div>
 
                 {/* Submit */}
-                <button type="submit" className={styles.submitButton}>
-                  Create Account
+                <button
+                  type="submit"
+                  disabled={signupLoading}
+                  className={styles.submitButton}
+                >
+                  {signupLoading ? "Creating Account..." : "Create Account"}
                 </button>
               </form>
+
+              {signupMessage && <p>{signupMessage}</p>}
 
               {/* Divider */}
               <div className={styles.divider}>
