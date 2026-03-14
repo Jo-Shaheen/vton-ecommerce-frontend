@@ -12,6 +12,8 @@ import VendorProductsPage from "./pages/VendorProductsPage";
 import VendorOrdersPage from "./pages/VendorOrdersPage";
 import VendorAnalyticsPage from "./pages/VendorAnalyticsPage";
 import VendorTicketsPage from "./pages/VendorTicketsPage";
+import Profile from "./pages/Profile";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -29,6 +31,14 @@ function App() {
       <Route path="/vendor/orders" element={<VendorOrdersPage />} />
       <Route path="/vendor/analytics" element={<VendorAnalyticsPage />} />
       <Route path="/vendor/tickets" element={<VendorTicketsPage />} />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
