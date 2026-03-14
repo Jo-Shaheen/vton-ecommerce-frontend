@@ -1,16 +1,7 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function Profile() {
-  const { user, token } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!token) {
-      navigate("/auth");
-    }
-  }, [token, navigate]);
+  const { user } = useAuth();
 
   if (!user) return <p>Loading...</p>;
 
