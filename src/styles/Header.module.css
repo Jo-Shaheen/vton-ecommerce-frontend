@@ -88,6 +88,14 @@
   width: 100%;
 }
 
+.navLinkActive {
+  color: var(--burgundy);
+}
+
+.navLinkActive::after {
+  width: 100%;
+}
+
 /* Right Section */
 .rightSection {
   display: flex;
@@ -160,6 +168,51 @@
   transform: translateY(-1px);
 }
 
+.avatarButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-circle);
+  background: var(--burgundy);
+  color: var(--white);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  padding: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+}
+
+.avatarButton:hover {
+  background: var(--burgundy-dark);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  padding: 0;
+}
+
+.logoutButton:hover {
+  background: var(--ivory);
+  color: var(--burgundy);
+  transform: translateY(-1px);
+}
+
 /* Login Button */
 .loginButton {
   display: flex;
@@ -216,7 +269,9 @@
   }
 
   .cartButton,
-  .profileButton {
+  .profileButton,
+  .avatarButton,
+  .logoutButton {
     width: 40px;
     height: 40px;
   }
