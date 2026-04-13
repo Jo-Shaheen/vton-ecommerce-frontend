@@ -1,8 +1,8 @@
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GoogleIcon, AppleIcon } from "../common/SocialIcons";
-import { loginUser } from "../../utils/authFunctions";
+import { GoogleIcon } from "../common/SocialIcons";
+import { forgotPassword, loginUser } from "../../utils/authFunctions";
 import { useAuth } from "../../context/AuthContext";
 
 /* ─────────────────────────────────────────────
@@ -14,23 +14,58 @@ import { useAuth } from "../../context/AuthContext";
 export default function LoginForm({ styles, onSwitchToSignup }) {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [forgotMessage, setForgotMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [forgotLoading, setForgotLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
+    setError("");
     const result = await loginUser(formData.email, formData.password);
-    setMessage(result.output);
+
     if (result.status) {
-      // Placeholder: Set user and token from API response
-      // login({ email: formData.email }, result.token);
-      navigate("/profile");
+      login(
+        result.data.user,
+        result.data.accessToken,
+        result.data.refreshToken,
+      );
+
+      const role = result.data.user?.role;
+      if (role === "vendor") {
+        navigate("/vendor");
+      } else if (role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+    } else {
+      setError(result.message);
     }
+
     setLoading(false);
+  };
+
+  const handleForgotPassword = async () => {
+    setForgotMessage("");
+    setError("");
+
+    if (!formData.email) {
+      setError("Please enter your email first.");
+      return;
+    }
+
+    setForgotLoading(true);
+    const result = await forgotPassword(formData.email);
+    if (result.status) {
+      setForgotMessage("If this email exists, a reset link was sent.");
+    } else {
+      setError(result.message);
+    }
+    setForgotLoading(false);
   };
 
   const handleChange = (e) => {
@@ -41,9 +76,7 @@ export default function LoginForm({ styles, onSwitchToSignup }) {
     <div className={styles.formContent}>
       <div className={styles.formHeader}>
         <h2 className={styles.formTitle}>Welcome Back</h2>
-        <p className={styles.formSubtitle}>
-          Sign in to your Ayyinai account
-        </p>
+        <p className={styles.formSubtitle}>Sign in to your Ayyinai account</p>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -62,6 +95,7 @@ export default function LoginForm({ styles, onSwitchToSignup }) {
               onChange={handleChange}
               placeholder="your@email.com"
               className={styles.input}
+              required
             />
           </div>
         </div>
@@ -81,6 +115,7 @@ export default function LoginForm({ styles, onSwitchToSignup }) {
               onChange={handleChange}
               placeholder="Enter your password"
               className={styles.input}
+              required
             />
             <button
               type="button"
@@ -99,9 +134,14 @@ export default function LoginForm({ styles, onSwitchToSignup }) {
             <input type="checkbox" className={styles.checkbox} />
             <span>Remember me</span>
           </label>
-          <a href="#" className={styles.forgotLink}>
-            Forgot password?
-          </a>
+          <button
+            type="button"
+            className={styles.forgotLink}
+            onClick={handleForgotPassword}
+            disabled={forgotLoading}
+          >
+            {forgotLoading ? "Sending..." : "Forgot password?"}
+          </button>
         </div>
 
         {/* Submit */}
@@ -114,7 +154,10 @@ export default function LoginForm({ styles, onSwitchToSignup }) {
         </button>
       </form>
 
-      {message && <p>{message}</p>}
+      {error && <p className={styles.formMessageError}>{error}</p>}
+      {forgotMessage && (
+        <p className={styles.formMessageInfo}>{forgotMessage}</p>
+      )}
 
       {/* Divider */}
       <div className={styles.divider}>
@@ -123,13 +166,15 @@ export default function LoginForm({ styles, onSwitchToSignup }) {
 
       {/* Social */}
       <div className={styles.socialButtons}>
-        <button type="button" className={styles.socialButton}>
+        <button
+          type="button"
+          className={styles.socialButton}
+          onClick={() => {
+            window.location.href = "http://localhost:3000/auth/google";
+          }}
+        >
           <GoogleIcon />
           <span>Google</span>
-        </button>
-        <button type="button" className={styles.socialButton}>
-          <AppleIcon />
-          <span>Apple</span>
         </button>
       </div>
 

@@ -1,7 +1,7 @@
 import { Mail, Lock, User, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GoogleIcon, AppleIcon } from "../common/SocialIcons";
+import { GoogleIcon } from "../common/SocialIcons";
 import { registerUser } from "../../utils/authFunctions";
 import { useAuth } from "../../context/AuthContext";
 
@@ -15,12 +15,13 @@ export default function RegistrationForm({ styles, onSwitchToLogin }) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -28,23 +29,46 @@ export default function RegistrationForm({ styles, onSwitchToLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
-    if (formData.password !== formData.confirmPassword) {
-      setMessage("Passwords do not match.");
+    setError("");
+
+    if (!formData.firstName || !formData.lastName) {
+      setError("First name and last name are required.");
       setLoading(false);
       return;
     }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
+      setLoading(false);
+      return;
+    }
+
     const result = await registerUser(
-      formData.name,
+      formData.firstName,
+      formData.lastName,
       formData.email,
       formData.password,
     );
-    setMessage(result.output);
+
     if (result.status) {
-      // Placeholder: Set user and token from API response
-      // login({ name: formData.name }, result.token);
-      navigate("/profile");
+      login(
+        result.data.user,
+        result.data.accessToken,
+        result.data.refreshToken,
+      );
+
+      const role = result.data.user?.role;
+      if (role === "vendor") {
+        navigate("/vendor");
+      } else if (role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+    } else {
+      setError(result.message);
     }
+
     setLoading(false);
   };
 
@@ -62,22 +86,42 @@ export default function RegistrationForm({ styles, onSwitchToLogin }) {
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        {/* Full Name */}
-        <div className={styles.formGroup}>
-          <label htmlFor="signup-name" className={styles.label}>
-            Full Name
-          </label>
-          <div className={styles.inputWrapper}>
-            <User className={styles.inputIcon} size={20} />
-            <input
-              id="signup-name"
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Your full name"
-              className={styles.input}
-            />
+        <div className={styles.formRow}>
+          <div className={styles.formGroup}>
+            <label htmlFor="signup-first-name" className={styles.label}>
+              First Name
+            </label>
+            <div className={styles.inputWrapper}>
+              <User className={styles.inputIcon} size={20} />
+              <input
+                id="signup-first-name"
+                name="firstName"
+                type="text"
+                value={formData.firstName}
+                onChange={handleChange}
+                placeholder="First name"
+                className={styles.input}
+                required
+              />
+            </div>
+          </div>
+
+          <div className={styles.formGroup}>
+            <label htmlFor="signup-last-name" className={styles.label}>
+              Last Name
+            </label>
+            <div className={styles.inputWrapper}>
+              <input
+                id="signup-last-name"
+                name="lastName"
+                type="text"
+                value={formData.lastName}
+                onChange={handleChange}
+                placeholder="Last name"
+                className={styles.input}
+                required
+              />
+            </div>
           </div>
         </div>
 
@@ -96,6 +140,7 @@ export default function RegistrationForm({ styles, onSwitchToLogin }) {
               onChange={handleChange}
               placeholder="your@email.com"
               className={styles.input}
+              required
             />
           </div>
         </div>
@@ -115,6 +160,7 @@ export default function RegistrationForm({ styles, onSwitchToLogin }) {
               onChange={handleChange}
               placeholder="Create a strong password"
               className={styles.input}
+              required
             />
             <button
               type="button"
@@ -142,20 +188,15 @@ export default function RegistrationForm({ styles, onSwitchToLogin }) {
               onChange={handleChange}
               placeholder="Confirm your password"
               className={styles.input}
+              required
             />
             <button
               type="button"
               className={styles.togglePassword}
-              onClick={() =>
-                setShowConfirmPassword(!showConfirmPassword)
-              }
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               aria-label="Toggle confirm password visibility"
             >
-              {showConfirmPassword ? (
-                <EyeOff size={20} />
-              ) : (
-                <Eye size={20} />
-              )}
+              {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
         </div>
@@ -187,7 +228,7 @@ export default function RegistrationForm({ styles, onSwitchToLogin }) {
         </button>
       </form>
 
-      {message && <p>{message}</p>}
+      {error && <p className={styles.formMessageError}>{error}</p>}
 
       {/* Divider */}
       <div className={styles.divider}>
@@ -196,13 +237,15 @@ export default function RegistrationForm({ styles, onSwitchToLogin }) {
 
       {/* Social */}
       <div className={styles.socialButtons}>
-        <button type="button" className={styles.socialButton}>
+        <button
+          type="button"
+          className={styles.socialButton}
+          onClick={() => {
+            window.location.href = "http://localhost:3000/auth/google";
+          }}
+        >
           <GoogleIcon />
           <span>Google</span>
-        </button>
-        <button type="button" className={styles.socialButton}>
-          <AppleIcon />
-          <span>Apple</span>
         </button>
       </div>
 
