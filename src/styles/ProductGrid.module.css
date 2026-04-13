@@ -7,8 +7,6 @@
 }
 
 .gridContainer {
-  max-width: var(--container-max);
-  margin: 0 auto;
   padding: var(--space-8);
   width: 100%;
 }

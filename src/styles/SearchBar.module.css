@@ -4,7 +4,6 @@
   background: var(--white);
   border-bottom: 1px solid var(--ivory-dark);
   padding: var(--space-6);
-  sticky: 0;
 }
 
 .searchBarContainer {

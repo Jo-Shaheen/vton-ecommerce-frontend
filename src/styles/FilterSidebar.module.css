@@ -2,11 +2,16 @@
 
 .sidebar {
   width: 260px;
+  min-width: 260px;
+  flex-shrink: 0;
   background: var(--white);
   border-right: 1px solid var(--ivory-dark);
   padding: var(--space-8);
+  position: sticky;
+  top: var(--topbar-height);
   max-height: calc(100vh - var(--topbar-height));
   overflow-y: auto;
+  align-self: flex-start;
 }
 
 .sidebarHeader {
@@ -26,18 +31,24 @@
 }
 
 .resetButton {
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   color: var(--burgundy);
-  background: none;
-  border: none;
+  background: rgba(139, 72, 82, 0.08);
+  border: 1px solid rgba(139, 72, 82, 0.25);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-3);
   cursor: pointer;
-  text-decoration: underline;
   font-weight: var(--weight-semibold);
-  transition: color var(--transition-fast);
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  transition: all var(--transition-fast);
 }
 
 .resetButton:hover {
-  color: var(--burgundy-dark);
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  color: var(--white);
 }
 
 /* Filter Section */

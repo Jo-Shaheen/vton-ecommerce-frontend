@@ -15,6 +15,8 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .resultsToolbar {
@@ -42,6 +44,10 @@
   padding: var(--space-2) var(--space-3);
   font-size: var(--text-sm);
   font-family: var(--font-sans);
+  width: fit-content;
+  max-width: 200px;
+  flex-shrink: 0;
+  cursor: pointer;
 }
 
 .pagination {
