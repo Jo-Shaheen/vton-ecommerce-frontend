@@ -96,8 +96,11 @@ export default function FilterSidebar({
         ]);
 
         setCategories(Array.isArray(catRes.data) ? catRes.data : []);
-        setColors(Array.isArray(colorRes.data) ? colorRes.data : []);
-        setSizes(Array.isArray(sizeRes.data) ? sizeRes.data : []);
+        const colorsData = colorRes.data?.data || colorRes.data || [];
+        setColors(Array.isArray(colorsData) ? colorsData : []);
+
+        const sizesData = sizeRes.data?.data || sizeRes.data || [];
+        setSizes(Array.isArray(sizesData) ? sizesData : []);
         setBrands(Array.isArray(brandRes.data) ? brandRes.data : []);
       } catch {
         setCategories([]);
@@ -241,7 +244,7 @@ export default function FilterSidebar({
                     checked={activeSizes.includes(size.id)}
                     onChange={() => toggleId("sizeIds", activeSizes, size.id)}
                   />
-                  <span>{size.label}</span>
+                  <span>{size.name}</span>
                 </label>
               ))}
             </div>
@@ -270,7 +273,7 @@ export default function FilterSidebar({
                   <button
                     key={color.id}
                     className={`${styles.colorSwatch} ${isActive ? styles.colorSwatchActive : ""}`}
-                    style={{ background: color.hexCode }}
+                    style={{ background: color.name }}
                     onClick={() => toggleId("colorIds", activeColors, color.id)}
                     aria-label={color.name}
                     title={color.name}

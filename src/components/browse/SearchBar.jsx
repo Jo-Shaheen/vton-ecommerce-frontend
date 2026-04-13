@@ -16,12 +16,18 @@ export default function SearchBar({ value = "", onChange }) {
       return;
     }
 
+    // THE FIX: Prevent echo. If the current input matches the prop passed from
+    // the parent, do nothing. The user hasn't typed anything new.
+    if (inputValue === value) {
+      return;
+    }
+
     const timeout = setTimeout(() => {
       onChange?.(inputValue);
     }, 400);
 
     return () => clearTimeout(timeout);
-  }, [inputValue, onChange]);
+  }, [inputValue, onChange, value]);
 
   const handleClear = () => {
     skipDebounceRef.current = true;
