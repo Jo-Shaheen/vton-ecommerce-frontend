@@ -1,4 +1,5 @@
 import { Navigate, Routes, Route } from "react-router-dom";
+import FloatingChatWidget from "./components/chat/FloatingChatWidget";
 import HomePage from "./pages/HomePage";
 import BrowsePage from "./pages/BrowsePage";
 import ProductPage from "./pages/ProductPage";
@@ -20,6 +21,7 @@ function App() {
   const { isAuthenticated } = useAuth();
 
   return (
+    <>
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/browse" element={<BrowsePage />} />
@@ -95,6 +97,8 @@ function App() {
         }
       />
     </Routes>
+    <FloatingChatWidget />
+    </>
   );
 }
 
