@@ -121,8 +121,10 @@ export default function FilterSidebar({
     return minMatches && maxMatches;
   });
 
+  const isPriceRangeActive = (range) => activePriceRange?.label === range.label;
+
   const handlePriceSelect = (range) => {
-    if (activePriceRange?.label === range.label) {
+    if (isPriceRangeActive(range)) {
       onFilterChange("minPrice", null);
       onFilterChange("maxPrice", null);
       return;
@@ -203,11 +205,10 @@ export default function FilterSidebar({
               <button
                 key={range.label}
                 className={`${styles.priceOption} ${
-                  activePriceRange?.label === range.label
-                    ? styles.priceOptionActive
-                    : ""
+                  isPriceRangeActive(range) ? styles.priceOptionActive : ""
                 }`}
                 onClick={() => handlePriceSelect(range)}
+                aria-pressed={isPriceRangeActive(range)}
               >
                 {range.label}
               </button>

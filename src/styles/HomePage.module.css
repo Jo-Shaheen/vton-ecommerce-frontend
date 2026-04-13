@@ -1,4 +1,4 @@
-@import './variables.css';
+@import "./variables.css";
 
 .pageWrapper {
   display: flex;
@@ -98,6 +98,9 @@
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, var(--gold) 0%, var(--burgundy) 100%);
   box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Features Section */
@@ -281,6 +284,23 @@
 
   .ctaDescription {
     font-size: var(--text-base);
+  }
+
+  .size_xxl .eyeContainer {
+    width: 240px;
+    height: 240px;
+  }
+  .size_xxl .eye {
+    width: 100px;
+    height: 100px;
+  }
+  .size_xxl .eyeLeft {
+    left: 20px;
+    top: 70px;
+  }
+  .size_xxl .eyeRight {
+    right: 20px;
+    top: 70px;
   }
 }
 

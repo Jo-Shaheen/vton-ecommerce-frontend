@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
@@ -45,6 +45,7 @@ export default function BrowsePage() {
   const currentLimit = Number(searchParams.get("limit") ?? "20");
   const currentQ = searchParams.get("q") ?? "";
   const currentSort = searchParams.get("sort") ?? "POPULAR";
+  const searchParamsString = searchParams.toString();
 
   const totalPages = Math.max(1, Math.ceil(total / currentLimit));
   const pageNumbers = useMemo(
@@ -55,37 +56,43 @@ export default function BrowsePage() {
   const showingFrom = total === 0 ? 0 : (currentPage - 1) * currentLimit + 1;
   const showingTo = Math.min(currentPage * currentLimit, total);
 
-  const updateFilter = (key, value) => {
-    setSearchParams((prev) => {
-      const next = new URLSearchParams(prev);
+  const updateFilter = useCallback(
+    (key, value) => {
+      setSearchParams((prev) => {
+        const next = new URLSearchParams(prev.toString());
 
-      if (
-        value === null ||
-        value === "" ||
-        value === undefined ||
-        (Array.isArray(value) && value.length === 0)
-      ) {
-        next.delete(key);
-      } else {
-        next.set(key, Array.isArray(value) ? value.join(",") : String(value));
-      }
+        if (
+          value === null ||
+          value === "" ||
+          value === undefined ||
+          (Array.isArray(value) && value.length === 0)
+        ) {
+          next.delete(key);
+        } else {
+          next.set(key, Array.isArray(value) ? value.join(",") : String(value));
+        }
 
-      next.set("page", "1");
-      return next;
-    });
-  };
+        next.set("page", "1");
+        return next;
+      });
+    },
+    [setSearchParams],
+  );
 
-  const goToPage = (pageNumber) => {
-    setSearchParams((prev) => {
-      const next = new URLSearchParams(prev);
-      next.set("page", String(pageNumber));
-      return next;
-    });
-  };
+  const goToPage = useCallback(
+    (pageNumber) => {
+      setSearchParams((prev) => {
+        const next = new URLSearchParams(prev.toString());
+        next.set("page", String(pageNumber));
+        return next;
+      });
+    },
+    [setSearchParams],
+  );
 
-  const resetFilters = () => {
+  const resetFilters = useCallback(() => {
     setSearchParams({});
-  };
+  }, [setSearchParams]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -107,7 +114,7 @@ export default function BrowsePage() {
     };
 
     fetchProducts();
-  }, [searchParams]);
+  }, [searchParamsString]);
 
   useEffect(() => {
     const fetchRecentProducts = async () => {

@@ -76,7 +76,7 @@ export default function LoginForm({ styles, onSwitchToSignup }) {
     <div className={styles.formContent}>
       <div className={styles.formHeader}>
         <h2 className={styles.formTitle}>Welcome Back</h2>
-        <p className={styles.formSubtitle}>Sign in to your Ayyinai account</p>
+        <p className={styles.formSubtitle}>Sign in to your AINAI account</p>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>

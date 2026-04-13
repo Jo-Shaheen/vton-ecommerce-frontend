@@ -81,7 +81,7 @@ export default function RegistrationForm({ styles, onSwitchToLogin }) {
       <div className={styles.formHeader}>
         <h2 className={styles.formTitle}>Create Account</h2>
         <p className={styles.formSubtitle}>
-          Join Ayyinai and discover luxury fashion
+          Join AINAI and discover luxury fashion
         </p>
       </div>
 

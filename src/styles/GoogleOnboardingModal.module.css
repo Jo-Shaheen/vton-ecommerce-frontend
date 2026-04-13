@@ -3,7 +3,12 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(20, 16, 18, 0.58);
+  background: radial-gradient(
+      circle at top,
+      rgba(212, 175, 122, 0.18),
+      transparent 45%
+    ),
+    rgba(20, 16, 18, 0.62);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,11 +18,13 @@
 
 .modalCard {
   width: 100%;
-  max-width: 560px;
-  background: var(--white);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-lg);
-  padding: var(--space-7);
+  max-width: 400px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), #fff);
+  border-radius: 28px;
+  box-shadow: 0 24px 70px rgba(20, 16, 18, 0.22);
+  padding: 2rem;
+  border: 1px solid rgba(139, 72, 82, 0.08);
+  backdrop-filter: blur(12px);
 }
 
 .title {
@@ -31,6 +38,7 @@
   margin: var(--space-2) 0 var(--space-5) 0;
   color: var(--charcoal-muted);
   font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
 }
 
 .form {
@@ -42,6 +50,11 @@
 .row {
   display: flex;
   gap: var(--space-4);
+}
+
+.optionalLabel {
+  color: var(--charcoal-muted);
+  font-weight: var(--weight-regular);
 }
 
 .field {
@@ -124,7 +137,8 @@
 
 @media (max-width: 640px) {
   .modalCard {
-    padding: var(--space-5);
+    padding: 1.5rem;
+    border-radius: 24px;
   }
 
   .row {

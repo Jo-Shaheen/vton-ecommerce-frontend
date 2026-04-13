@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
+import AinaiLogo from "../components/common/AinaiLogo";
 import styles from "../styles/HomePage.module.css";
 
 export default function HomePage() {
@@ -54,12 +55,19 @@ export default function HomePage() {
             )}
           </div>
         </div>
-        <div className={styles.heroImage} />
+        <div className={styles.heroImage}>
+          <AinaiLogo
+            size="xxl"
+            variant="light"
+            showText={false}
+            animated={true}
+          />
+        </div>
       </section>
 
       {/* Features Section */}
       <section id="features" className={styles.features}>
-        <h2 className={styles.featuresTitle}>Why Choose Ayyinai?</h2>
+        <h2 className={styles.featuresTitle}>Why Choose AINAI?</h2>
 
         <div className={styles.featureGrid}>
           {/* Feature 1 */}

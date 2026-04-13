@@ -142,7 +142,8 @@ export default function GoogleOnboardingModal({ onComplete }) {
 
           <div className={styles.field}>
             <label htmlFor="google-phone" className={styles.label}>
-              Phone Number
+              Phone Number{" "}
+              <span className={styles.optionalLabel}>(Optional)</span>
             </label>
             <div className={styles.inputWrapper}>
               <Phone className={styles.icon} size={18} />
@@ -159,7 +160,8 @@ export default function GoogleOnboardingModal({ onComplete }) {
 
           <div className={styles.field}>
             <label htmlFor="google-street" className={styles.label}>
-              Street Address
+              Street Address{" "}
+              <span className={styles.optionalLabel}>(Optional)</span>
             </label>
             <input
               id="google-street"
