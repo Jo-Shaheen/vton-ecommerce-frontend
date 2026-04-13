@@ -1,12 +1,17 @@
-@import './variables.css';
+@import "./variables.css";
 
 .sidebar {
   width: 260px;
+  min-width: 260px;
+  flex-shrink: 0;
   background: var(--white);
   border-right: 1px solid var(--ivory-dark);
   padding: var(--space-8);
+  position: sticky;
+  top: var(--topbar-height);
   max-height: calc(100vh - var(--topbar-height));
   overflow-y: auto;
+  align-self: flex-start;
 }
 
 .sidebarHeader {
@@ -26,18 +31,24 @@
 }
 
 .resetButton {
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   color: var(--burgundy);
-  background: none;
-  border: none;
+  background: rgba(139, 72, 82, 0.08);
+  border: 1px solid rgba(139, 72, 82, 0.25);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-3);
   cursor: pointer;
-  text-decoration: underline;
   font-weight: var(--weight-semibold);
-  transition: color var(--transition-fast);
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  transition: all var(--transition-fast);
 }
 
 .resetButton:hover {
-  color: var(--burgundy-dark);
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  color: var(--white);
 }
 
 /* Filter Section */
@@ -121,6 +132,102 @@
   cursor: pointer;
   accent-color: var(--burgundy);
   flex-shrink: 0;
+}
+
+.priceOption {
+  text-align: left;
+  border: 1px solid var(--ivory-dark);
+  background: var(--white);
+  color: var(--charcoal);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  transition: all var(--transition-fast);
+}
+
+.priceOption:hover {
+  border-color: var(--burgundy);
+}
+
+.priceOptionActive {
+  background: rgba(139, 72, 82, 0.1);
+  border-color: var(--burgundy);
+  color: var(--burgundy);
+}
+
+.swatchGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.colorSwatch {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-circle);
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.colorSwatchActive {
+  border-color: var(--charcoal);
+}
+
+.swatchCheck {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.genderButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.genderButton {
+  border: 1px solid var(--ivory-dark);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--charcoal);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+}
+
+.genderButtonActive {
+  background: var(--burgundy);
+  color: var(--white);
+  border-color: var(--burgundy);
+}
+
+.skeletonLine {
+  height: 14px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, #ece6df 25%, #f5f0ea 50%, #ece6df 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* Responsive */

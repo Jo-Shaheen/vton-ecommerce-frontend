@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../../styles/AinaiLogo.module.css";
 
 /* ─────────────────────────────────────────────
-   AinaiLogo – Brand logo matching ayyinai-logo-demo.html
+  AinaiLogo – Brand logo matching ainai-logo-demo.html
    Two almond-shaped eyes with gold pupils + blink animation
    
    Props:

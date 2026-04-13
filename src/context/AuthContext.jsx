@@ -1,4 +1,12 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import {
+  clearAll,
+  getAccessToken,
+  getUserData,
+  setTokens,
+  setUserData,
+} from "../utils/localStorage";
+import { logoutUser } from "../utils/authFunctions";
 
 const AuthContext = createContext();
 
@@ -6,31 +14,41 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const storedUser = getUserData();
+  const storedAccessToken = getAccessToken();
+  const hasSession = Boolean(storedUser && storedAccessToken);
+
+  const [user, setUser] = useState(hasSession ? storedUser : null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(hasSession);
 
   useEffect(() => {
-    if (token) {
-      // Placeholder: Later, fetch user data from API using token
-      // e.g., const userData = await fetch(`${API_BASE}/auth/me`, { headers: { Authorization: `Bearer ${token}` } });
-      // setUser(userData);
-    }
-  }, [token]);
+    queueMicrotask(() => {
+      setIsLoading(false);
+    });
+  }, []);
 
-  const login = (userData, authToken) => {
+  const login = (userData, accessToken, refreshToken) => {
     setUser(userData);
-    setToken(authToken);
-    localStorage.setItem("token", authToken);
+    setTokens(accessToken, refreshToken);
+    setUserData(userData);
+    setIsAuthenticated(true);
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await logoutUser();
+    clearAll();
     setUser(null);
-    setToken("");
-    localStorage.removeItem("token");
+    setIsAuthenticated(false);
+    window.location.href = "/auth";
   };
+
+  const userRole = user?.role ?? null;
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated, isLoading, userRole, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
