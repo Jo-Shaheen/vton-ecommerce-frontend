@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import {
   ShoppingBag,
   Eye,
@@ -33,6 +33,8 @@ function getInitials(name) {
 
 export default function ProductPage() {
   const { id } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -45,6 +47,13 @@ export default function ProductPage() {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [vtonOpen, setVtonOpen] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
+
+  useEffect(() => {
+    if (location.state?.autoTriggerTryOn === true) {
+      setVtonOpen(true);
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [location.pathname, location.state, navigate]);
 
   useEffect(() => {
     const fetchProduct = async () => {

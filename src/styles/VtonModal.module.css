@@ -1,4 +1,4 @@
-@import './variables.css';
+@import "./variables.css";
 
 .modalOverlay {
   position: fixed;
@@ -135,11 +135,18 @@
 .modalBody {
   flex: 1;
   overflow-y: auto;
-  padding: var(--space-8);
+  padding: var(--space-10) var(--space-8);
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 300px;
+}
+
+.uploadState {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Loading State */
@@ -246,14 +253,29 @@
 }
 
 .buttonPrimary {
-  background: var(--burgundy);
+  background: linear-gradient(
+    135deg,
+    var(--burgundy) 0%,
+    var(--burgundy-dark) 100%
+  );
   color: var(--white);
-  box-shadow: var(--shadow-burgundy);
+  box-shadow: 0 8px 24px rgba(109, 54, 64, 0.35);
+  border: 1px solid rgba(58, 48, 43, 0.15);
 }
 
 .buttonPrimary:hover {
-  background: var(--burgundy-dark);
+  background: linear-gradient(
+    135deg,
+    var(--burgundy-dark) 0%,
+    var(--charcoal) 100%
+  );
   transform: translateY(-1px);
+}
+
+.buttonPrimary:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+  transform: none;
 }
 
 .buttonSecondary {
@@ -320,7 +342,7 @@
   }
 
   .modalBody {
-    padding: var(--space-6);
+    padding: var(--space-8) var(--space-6);
     min-height: 250px;
   }
 

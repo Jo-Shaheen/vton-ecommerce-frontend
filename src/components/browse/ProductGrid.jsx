@@ -6,6 +6,7 @@ export default function ProductGrid({
   products = [],
   loading = false,
   error = null,
+  onTryOn,
 }) {
   return (
     <div className={styles.gridWrapper}>
@@ -25,7 +26,7 @@ export default function ProductGrid({
               <ProductCard
                 key={product.id}
                 product={product}
-                onTryOn={() => console.log("VTON Phase 7:", product.id)}
+                onTryOn={() => onTryOn?.(product.id)}
                 onAddToCart={() => console.log("Cart Phase 4:", product.id)}
               />
             ))}

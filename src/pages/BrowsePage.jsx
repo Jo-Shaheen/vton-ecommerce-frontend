@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import SearchBar from "../components/browse/SearchBar";
@@ -34,6 +34,7 @@ function buildPageNumbers(currentPage, totalPages) {
 }
 
 export default function BrowsePage() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
@@ -109,6 +110,15 @@ export default function BrowsePage() {
     setSearchParams({});
   }, [setSearchParams]);
 
+  const handleTryOn = useCallback(
+    (productId) => {
+      navigate(`/product/${productId}`, {
+        state: { autoTriggerTryOn: true },
+      });
+    },
+    [navigate],
+  );
+
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -181,7 +191,12 @@ export default function BrowsePage() {
             </select>
           </div>
 
-          <ProductGrid products={products} loading={loading} error={error} />
+          <ProductGrid
+            products={products}
+            loading={loading}
+            error={error}
+            onTryOn={handleTryOn}
+          />
 
           {!loading && totalPages > 1 && (
             <div className={styles.pagination}>
@@ -223,7 +238,7 @@ export default function BrowsePage() {
                   <div key={product.id} className={styles.recentCard}>
                     <ProductCard
                       product={product}
-                      onTryOn={() => console.log("VTON Phase 7:", product.id)}
+                      onTryOn={() => handleTryOn(product.id)}
                       onAddToCart={() =>
                         console.log("Cart Phase 4:", product.id)
                       }

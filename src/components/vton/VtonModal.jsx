@@ -1,9 +1,11 @@
-import { X } from 'lucide-react';
-import styles from '../../styles/VtonModal.module.css';
-import { useState } from 'react';
+import { X } from "lucide-react";
+import styles from "../../styles/VtonModal.module.css";
+import { useState } from "react";
+import PhotoUploadArea from "../common/PhotoUploadArea";
 
 export default function VtonModal({ isOpen, onClose }) {
-  const [step, setStep] = useState('upload'); // upload, loading, result
+  const [step, setStep] = useState("upload"); // upload, loading, result
+  const [selectedFile, setSelectedFile] = useState(null);
 
   if (!isOpen) return null;
 
@@ -13,7 +15,7 @@ export default function VtonModal({ isOpen, onClose }) {
         {/* Header */}
         <div className={styles.modalHeader}>
           <h2 className={styles.modalTitle}>Virtual Try-On</h2>
-          <button 
+          <button
             className={styles.closeButton}
             onClick={onClose}
             aria-label="Close modal"
@@ -23,19 +25,41 @@ export default function VtonModal({ isOpen, onClose }) {
         </div>
 
         {/* Step Indicator */}
-        {step !== 'upload' && (
+        {step !== "upload" && (
           <div className={styles.stepIndicator}>
-            <div className={styles.step + (step === 'upload' ? ` ${styles.active}` : step === 'result' ? ` ${styles.completed}` : '')}>
+            <div
+              className={
+                styles.step +
+                (step === "upload"
+                  ? ` ${styles.active}`
+                  : step === "result"
+                    ? ` ${styles.completed}`
+                    : "")
+              }
+            >
               <span className={styles.stepNumber}>1</span>
               <span className={styles.stepLabel}>Upload</span>
             </div>
             <div className={styles.stepConnector} />
-            <div className={styles.step + (step === 'loading' ? ` ${styles.active}` : step === 'result' ? ` ${styles.completed}` : '')}>
+            <div
+              className={
+                styles.step +
+                (step === "loading"
+                  ? ` ${styles.active}`
+                  : step === "result"
+                    ? ` ${styles.completed}`
+                    : "")
+              }
+            >
               <span className={styles.stepNumber}>2</span>
               <span className={styles.stepLabel}>Processing</span>
             </div>
             <div className={styles.stepConnector} />
-            <div className={styles.step + (step === 'result' ? ` ${styles.active}` : '')}>
+            <div
+              className={
+                styles.step + (step === "result" ? ` ${styles.active}` : "")
+              }
+            >
               <span className={styles.stepNumber}>3</span>
               <span className={styles.stepLabel}>Result</span>
             </div>
@@ -44,7 +68,13 @@ export default function VtonModal({ isOpen, onClose }) {
 
         {/* Modal Body */}
         <div className={styles.modalBody}>
-          {step === 'loading' && (
+          {step === "upload" && (
+            <div className={styles.uploadState}>
+              <PhotoUploadArea onFileChange={setSelectedFile} />
+            </div>
+          )}
+
+          {step === "loading" && (
             <div className={styles.loadingState}>
               <div className={styles.loadingSpinner} />
               <h3 className={styles.loadingTitle}>Creating Your Try-On</h3>
@@ -53,8 +83,8 @@ export default function VtonModal({ isOpen, onClose }) {
               </p>
             </div>
           )}
-          
-          {step === 'result' && (
+
+          {step === "result" && (
             <div className={styles.resultState}>
               <div className={styles.resultImage} />
               <h3 className={styles.resultTitle}>Try-On Ready!</h3>
@@ -67,26 +97,33 @@ export default function VtonModal({ isOpen, onClose }) {
 
         {/* Footer Actions */}
         <div className={styles.modalFooter}>
-          {step === 'upload' && (
+          {step === "upload" && (
             <>
               <button className={styles.buttonSecondary} onClick={onClose}>
                 Cancel
               </button>
-              <button className={styles.buttonPrimary} onClick={() => setStep('loading')}>
+              <button
+                className={styles.buttonPrimary}
+                onClick={() => setStep("loading")}
+                disabled={!selectedFile}
+              >
                 Generate Try-On
               </button>
             </>
           )}
-          
-          {step === 'loading' && (
+
+          {step === "loading" && (
             <button className={styles.buttonSecondary} onClick={onClose}>
               Cancel
             </button>
           )}
-          
-          {step === 'result' && (
+
+          {step === "result" && (
             <>
-              <button className={styles.buttonSecondary} onClick={() => setStep('upload')}>
+              <button
+                className={styles.buttonSecondary}
+                onClick={() => setStep("upload")}
+              >
                 Try Another
               </button>
               <button className={styles.buttonPrimary} onClick={onClose}>
