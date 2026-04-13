@@ -6,72 +6,95 @@ import {
   setTokens,
 } from "./localStorage";
 
-const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+const baseURL = import.meta.env.VITE_API_URL;
 
-apiClient.interceptors.request.use(
-  (config) => {
-    const accessToken = getAccessToken();
-    if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
-    }
+function createApiClient(contentType = "application/json") {
+  const headers = {};
 
-    return config;
-  },
-  (error) => Promise.reject(error),
-);
+  if (contentType) {
+    headers["Content-Type"] = contentType;
+  }
 
-apiClient.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
+  return axios.create({
+    baseURL,
+    headers,
+  });
+}
 
-    if (error?.response?.status !== 401 || originalRequest?._retry) {
-      return Promise.reject(error);
-    }
+function attachAuthInterceptor(client) {
+  client.interceptors.request.use(
+    (config) => {
+      const accessToken = getAccessToken();
+      if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`;
+      }
 
-    if (originalRequest?.url?.includes("/auth/refresh-tokens")) {
-      clearAll();
-      window.location.href = "/auth";
-      return Promise.reject(error);
-    }
+      return config;
+    },
+    (error) => Promise.reject(error),
+  );
 
-    const refreshToken = getRefreshToken();
-    if (!refreshToken) {
-      clearAll();
-      window.location.href = "/auth";
-      return Promise.reject(error);
-    }
+  return client;
+}
 
-    try {
-      originalRequest._retry = true;
+function attachResponseInterceptor(client, retryClient) {
+  client.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+      const originalRequest = error.config;
 
-      const refreshResponse = await axios.post(
-        `${import.meta.env.VITE_API_URL}/auth/refresh-tokens`,
-        { refreshToken },
-        {
-          headers: {
-            "Content-Type": "application/json",
+      if (error?.response?.status !== 401 || originalRequest?._retry) {
+        return Promise.reject(error);
+      }
+
+      if (originalRequest?.url?.includes("/auth/refresh-tokens")) {
+        clearAll();
+        window.location.href = "/auth";
+        return Promise.reject(error);
+      }
+
+      const refreshToken = getRefreshToken();
+      if (!refreshToken) {
+        clearAll();
+        window.location.href = "/auth";
+        return Promise.reject(error);
+      }
+
+      try {
+        originalRequest._retry = true;
+
+        const refreshResponse = await axios.post(
+          `${baseURL}/auth/refresh-tokens`,
+          { refreshToken },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        },
-      );
+        );
 
-      const { accessToken, refreshToken: newRefreshToken } =
-        refreshResponse.data;
-      setTokens(accessToken, newRefreshToken);
+        const { accessToken, refreshToken: newRefreshToken } =
+          refreshResponse.data;
+        setTokens(accessToken, newRefreshToken);
 
-      originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-      return apiClient(originalRequest);
-    } catch (refreshError) {
-      clearAll();
-      window.location.href = "/auth";
-      return Promise.reject(refreshError);
-    }
-  },
-);
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+        return retryClient(originalRequest);
+      } catch (refreshError) {
+        clearAll();
+        window.location.href = "/auth";
+        return Promise.reject(refreshError);
+      }
+    },
+  );
+
+  return client;
+}
+
+const apiClient = attachAuthInterceptor(createApiClient());
+
+export const multipartClient = attachAuthInterceptor(createApiClient(null));
+
+attachResponseInterceptor(apiClient, apiClient);
+attachResponseInterceptor(multipartClient, multipartClient);
 
 export default apiClient;

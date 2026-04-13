@@ -149,6 +149,29 @@
   align-items: center;
 }
 
+.uploadPanel {
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+}
+
+.panelTitle {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--charcoal);
+  margin: 0 0 var(--space-2);
+  padding: 0;
+}
+
+.panelDescription {
+  font-size: var(--text-sm);
+  color: var(--charcoal-muted);
+  line-height: var(--leading-normal);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+}
+
 /* Loading State */
 .loadingState {
   display: flex;
@@ -205,11 +228,108 @@
   text-align: center;
 }
 
-.resultImage {
-  width: 120px;
-  height: 150px;
+.resultImageButton {
+  padding: 0;
+  border: none;
+  background: #f8f9fa;
+  cursor: zoom-in;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  width: 100%;
+  max-width: 420px;
+}
+
+.resultImageButton:focus-visible,
+.retryButton:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 3px;
+}
+
+.resultImagePreview {
+  display: block;
+  width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  width: 100%;
+  text-align: center;
+  color: var(--charcoal);
+}
+
+.errorIcon {
+  color: var(--burgundy);
+}
+
+.errorTitle {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  margin: 0;
+  padding: 0;
+}
+
+.errorMessage {
+  font-size: var(--text-base);
+  color: var(--charcoal-muted);
+  line-height: var(--leading-normal);
+  max-width: 420px;
+  margin: 0;
+}
+
+.retryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 2px solid var(--burgundy);
+  background: transparent;
+  color: var(--burgundy);
+  padding: var(--space-3) var(--space-5);
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.retryButton:hover {
+  background: rgba(109, 54, 64, 0.08);
+}
+
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-modal) + 1);
+  background: rgba(10, 10, 10, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+
+.lightboxContent {
+  max-width: min(95vw, 1100px);
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
 }
 
 .resultTitle {

@@ -362,7 +362,12 @@ export default function ProductPage() {
       </main>
 
       <Footer />
-      <VtonModal isOpen={vtonOpen} onClose={() => setVtonOpen(false)} />
+      <VtonModal
+        isOpen={vtonOpen}
+        onClose={() => setVtonOpen(false)}
+        productMainImageUrl={selectedImageUrl}
+        productName={product.name}
+      />
     </div>
   );
 }
