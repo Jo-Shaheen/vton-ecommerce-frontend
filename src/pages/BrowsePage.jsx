@@ -57,19 +57,34 @@ export default function BrowsePage() {
   const showingTo = Math.min(currentPage * currentLimit, total);
 
   const updateFilter = useCallback(
-    (key, value) => {
+    (keyOrUpdates, value) => {
       setSearchParams((prev) => {
         const next = new URLSearchParams(prev.toString());
 
+        // Helper function to apply a single filter logic
+        const applyUpdate = (k, v) => {
+          if (
+            v === null ||
+            v === "" ||
+            v === undefined ||
+            (Array.isArray(v) && v.length === 0)
+          ) {
+            next.delete(k);
+          } else {
+            next.set(k, Array.isArray(v) ? v.join(",") : String(v));
+          }
+        };
+
+        // Check if we passed an object of multiple updates (e.g., { minPrice, maxPrice })
         if (
-          value === null ||
-          value === "" ||
-          value === undefined ||
-          (Array.isArray(value) && value.length === 0)
+          typeof keyOrUpdates === "object" &&
+          keyOrUpdates !== null &&
+          !Array.isArray(keyOrUpdates)
         ) {
-          next.delete(key);
+          Object.entries(keyOrUpdates).forEach(([k, v]) => applyUpdate(k, v));
         } else {
-          next.set(key, Array.isArray(value) ? value.join(",") : String(value));
+          // Standard single update (e.g., "q", "shirts")
+          applyUpdate(keyOrUpdates, value);
         }
 
         next.set("page", "1");

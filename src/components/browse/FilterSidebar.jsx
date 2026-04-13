@@ -128,18 +128,17 @@ export default function FilterSidebar({
 
   const handlePriceSelect = (range) => {
     if (isPriceRangeActive(range)) {
-      onFilterChange("minPrice", null);
-      onFilterChange("maxPrice", null);
+      // Clear both filters simultaneously
+      onFilterChange({ minPrice: null, maxPrice: null });
       return;
     }
 
-    onFilterChange("minPrice", String(range.minPrice));
-    onFilterChange(
-      "maxPrice",
-      range.maxPrice === null ? null : String(range.maxPrice),
-    );
+    // Set both filters simultaneously
+    onFilterChange({
+      minPrice: String(range.minPrice),
+      maxPrice: range.maxPrice === null ? null : String(range.maxPrice),
+    });
   };
-
   const skeleton = (
     <div className={styles.filterOptions}>
       <div className={styles.skeletonLine} />
