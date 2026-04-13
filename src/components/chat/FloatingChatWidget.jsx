@@ -9,10 +9,53 @@ import styles from "../../styles/FloatingChatWidget.module.css";
 // ---------------------------------------------------------------------------
 
 /**
+ * Renders a single line of inline markdown into React nodes.
+ * Handles: **bold** → <strong>, everything else as plain text.
+ * The caller strips leading bullet characters before passing the line in.
+ */
+function renderInline(line, key) {
+  const BOLD_RE = /\*\*([^*]+)\*\*/g;
+  const parts = [];
+  let last = 0;
+  let match;
+  let idx = 0;
+
+  while ((match = BOLD_RE.exec(line)) !== null) {
+    if (match.index > last) {
+      parts.push(<span key={idx++}>{line.slice(last, match.index)}</span>);
+    }
+    parts.push(<strong key={idx++}>{match[1]}</strong>);
+    last = match.index + match[0].length;
+  }
+
+  if (last < line.length) {
+    parts.push(<span key={idx++}>{line.slice(last)}</span>);
+  }
+
+  return <p key={key} className={styles.messageText}>{parts}</p>;
+}
+
+/**
+ * Renders a text segment, handling line-by-line markdown:
+ *  - Lines starting with `* ` or `- ` have the bullet stripped
+ *  - **bold** is rendered as <strong>
+ *  - Blank lines become spacing
+ */
+function renderTextSegment(text, segKey) {
+  const lines = text.split("\n");
+  return lines.map((rawLine, i) => {
+    // Strip leading bullet: `* `, `- `, or `• `
+    const line = rawLine.replace(/^[\*\-•]\s+/, "").trimEnd();
+    if (!line) return null;
+    return renderInline(line, `${segKey}-${i}`);
+  });
+}
+
+/**
  * The chatbot reply is markdown-ish text that may contain product image tags
  * already injected as markdown: ![name](cloudinary_url)
  * We parse the reply into segments so we can:
- *  1. Render plain text as-is
+ *  1. Render plain text as-is (with inline markdown stripped)
  *  2. Detect embedded images and trigger product matching for each one
  */
 function parseReplySegments(reply) {
@@ -167,12 +210,10 @@ function ChatMessageBubble({ message }) {
             />
           );
         }
-        // Render text — preserve line breaks
-        return seg.content.trim() ? (
-          <p key={i} className={styles.messageText}>
-            {seg.content.trim()}
-          </p>
-        ) : null;
+        // Render text with inline markdown (bold, bullet strip)
+        return seg.content.trim()
+          ? renderTextSegment(seg.content, i)
+          : null;
       })}
     </div>
   );
