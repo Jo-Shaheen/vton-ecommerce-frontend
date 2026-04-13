@@ -18,13 +18,26 @@
 .modalContent {
   background: var(--white);
   border-radius: var(--radius-lg);
-  width: 100%;
-  max-width: 600px;
+  width: 70vw;
+  max-width: 900px;
+  min-width: 760px;
+  height: 90vh;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: slideUp var(--transition-base);
+}
+
+/* Top Section */
+.modalTopSection {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--ivory-dark);
 }
 
 /* Header */
@@ -33,7 +46,6 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--space-8);
-  border-bottom: 1px solid var(--ivory-dark);
   flex-shrink: 0;
 }
 
@@ -71,8 +83,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-4);
-  padding: var(--space-6) var(--space-8);
-  border-bottom: 1px solid var(--ivory-dark);
+  padding: 0 var(--space-8);
   flex-shrink: 0;
 }
 
@@ -134,12 +145,12 @@
 /* Body */
 .modalBody {
   flex: 1;
-  overflow-y: auto;
-  padding: var(--space-10) var(--space-8);
+  overflow: hidden;
+  padding: var(--space-6) var(--space-10);
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  min-height: 300px;
+  min-height: 0;
 }
 
 .uploadState {
@@ -222,10 +233,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-6);
+  justify-content: flex-start;
+  gap: var(--space-4);
   width: 100%;
   text-align: center;
+  height: 100%;
 }
 
 .resultImageButton {
@@ -237,7 +249,7 @@
   overflow: hidden;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
   width: 100%;
-  max-width: 420px;
+  max-width: 560px;
 }
 
 .resultImageButton:focus-visible,
@@ -249,6 +261,7 @@
 .resultImagePreview {
   display: block;
   width: 100%;
+  height: 100%;
   max-height: 60vh;
   object-fit: contain;
   border-radius: 8px;
@@ -353,7 +366,7 @@
 .modalFooter {
   display: flex;
   gap: var(--space-4);
-  padding: var(--space-8);
+  padding: var(--space-6) var(--space-8);
   border-top: 1px solid var(--ivory-dark);
   background: var(--ivory);
   flex-shrink: 0;
@@ -433,8 +446,16 @@
 /* Responsive */
 @media (max-width: 768px) {
   .modalContent {
+    width: 100%;
+    min-width: 0;
     max-width: 100%;
+    height: auto;
     margin: var(--space-4);
+  }
+
+  .modalTopSection {
+    padding-bottom: var(--space-6);
+    margin-bottom: var(--space-4);
   }
 
   .modalHeader {
@@ -462,8 +483,8 @@
   }
 
   .modalBody {
-    padding: var(--space-8) var(--space-6);
-    min-height: 250px;
+    overflow-y: auto;
+    padding: var(--space-6);
   }
 
   .modalFooter {
@@ -484,6 +505,8 @@
   }
 
   .modalContent {
+    width: 100%;
+    min-width: 0;
     max-height: 95vh;
   }
 

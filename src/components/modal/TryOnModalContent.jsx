@@ -188,50 +188,52 @@ export default function TryOnModalContent({
 
   return (
     <>
-      <div className={styles.modalHeader}>
-        <h2 className={styles.modalTitle}>Virtual Try-On</h2>
-        <button
-          className={styles.closeButton}
-          onClick={onClose}
-          aria-label="Close modal"
-          type="button"
-        >
-          <X size={24} />
-        </button>
-      </div>
+      <div className={styles.modalTopSection}>
+        <div className={styles.modalHeader}>
+          <h2 className={styles.modalTitle}>Virtual Try-On</h2>
+          <button
+            className={styles.closeButton}
+            onClick={onClose}
+            aria-label="Close modal"
+            type="button"
+          >
+            <X size={24} />
+          </button>
+        </div>
 
-      <div className={styles.stepIndicator}>
-        <div
-          className={`${styles.step} ${
-            phase === MODAL_PHASE.UPLOAD || phase === MODAL_PHASE.ERROR
-              ? styles.active
-              : styles.completed
-          }`}
-        >
-          <span className={styles.stepNumber}>1</span>
-          <span className={styles.stepLabel}>Upload</span>
-        </div>
-        <div className={styles.stepConnector} />
-        <div
-          className={`${styles.step} ${
-            phase === MODAL_PHASE.GENERATING
-              ? styles.active
-              : phase === MODAL_PHASE.RESULTS
-                ? styles.completed
-                : ""
-          }`}
-        >
-          <span className={styles.stepNumber}>2</span>
-          <span className={styles.stepLabel}>Generating</span>
-        </div>
-        <div className={styles.stepConnector} />
-        <div
-          className={`${styles.step} ${
-            phase === MODAL_PHASE.RESULTS ? styles.active : ""
-          }`}
-        >
-          <span className={styles.stepNumber}>3</span>
-          <span className={styles.stepLabel}>Results</span>
+        <div className={styles.stepIndicator}>
+          <div
+            className={`${styles.step} ${
+              phase === MODAL_PHASE.UPLOAD || phase === MODAL_PHASE.ERROR
+                ? styles.active
+                : styles.completed
+            }`}
+          >
+            <span className={styles.stepNumber}>1</span>
+            <span className={styles.stepLabel}>Upload</span>
+          </div>
+          <div className={styles.stepConnector} />
+          <div
+            className={`${styles.step} ${
+              phase === MODAL_PHASE.GENERATING
+                ? styles.active
+                : phase === MODAL_PHASE.RESULTS
+                  ? styles.completed
+                  : ""
+            }`}
+          >
+            <span className={styles.stepNumber}>2</span>
+            <span className={styles.stepLabel}>Generating</span>
+          </div>
+          <div className={styles.stepConnector} />
+          <div
+            className={`${styles.step} ${
+              phase === MODAL_PHASE.RESULTS ? styles.active : ""
+            }`}
+          >
+            <span className={styles.stepNumber}>3</span>
+            <span className={styles.stepLabel}>Results</span>
+          </div>
         </div>
       </div>
 
