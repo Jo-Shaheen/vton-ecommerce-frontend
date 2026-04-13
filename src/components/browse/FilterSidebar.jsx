@@ -266,22 +266,20 @@ export default function FilterSidebar({
           (loading ? (
             skeleton
           ) : (
-            <div className={styles.swatchGrid}>
-              {colors.map((color) => {
-                const isActive = activeColors.includes(color.id);
-                return (
-                  <button
-                    key={color.id}
-                    className={`${styles.colorSwatch} ${isActive ? styles.colorSwatchActive : ""}`}
-                    style={{ background: color.name }}
-                    onClick={() => toggleId("colorIds", activeColors, color.id)}
-                    aria-label={color.name}
-                    title={color.name}
-                  >
-                    {isActive && <span className={styles.swatchCheck}>✓</span>}
-                  </button>
-                );
-              })}
+            <div className={styles.filterOptions}>
+              {colors.map((color) => (
+                <label key={color.id} className={styles.filterLabel}>
+                  <input
+                    type="checkbox"
+                    className={styles.checkbox}
+                    checked={activeColors.includes(color.id)}
+                    onChange={() =>
+                      toggleId("colorIds", activeColors, color.id)
+                    }
+                  />
+                  <span>{color.name}</span>
+                </label>
+              ))}
             </div>
           ))}
       </div>
