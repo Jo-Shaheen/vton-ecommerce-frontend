@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import GoogleOnboardingModal from "../components/auth/GoogleOnboardingModal";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { useAuth } from "../context/AuthContext";
 
@@ -25,12 +26,37 @@ const decodeJwtPayload = (token) => {
 export default function AuthCallbackPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const params = useMemo(() => new URLSearchParams(window.location.search), []);
+  const accessToken = params.get("accessToken");
+  const refreshToken = params.get("refreshToken");
+  const isNewUser = params.get("isNewUser") === "true";
+  const payload = decodeJwtPayload(accessToken);
+  const callbackRole = payload?.role || null;
+  const [showOnboarding, setShowOnboarding] = useState(isNewUser);
+
+  const redirectByRole = useMemo(
+    () => (role) => {
+      if (role === "vendor") {
+        navigate("/vendor", { replace: true });
+        return;
+      }
+
+      if (role === "admin") {
+        navigate("/admin", { replace: true });
+        return;
+      }
+
+      navigate("/", { replace: true });
+    },
+    [navigate],
+  );
+
+  const handleOnboardingComplete = () => {
+    setShowOnboarding(false);
+    redirectByRole(callbackRole);
+  };
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const accessToken = params.get("accessToken");
-    const refreshToken = params.get("refreshToken");
-
     if (!accessToken || !refreshToken) {
       navigate("/auth", {
         replace: true,
@@ -39,7 +65,6 @@ export default function AuthCallbackPage() {
       return;
     }
 
-    const payload = decodeJwtPayload(accessToken);
     const user = {
       id: payload?.sub || payload?.id || null,
       email: payload?.email || null,
@@ -58,18 +83,30 @@ export default function AuthCallbackPage() {
 
     login(user, accessToken, refreshToken);
 
-    if (user.role === "vendor") {
-      navigate("/vendor", { replace: true });
+    if (isNewUser) {
       return;
     }
 
-    if (user.role === "admin") {
-      navigate("/admin", { replace: true });
-      return;
-    }
+    redirectByRole(user.role);
+  }, [
+    accessToken,
+    isNewUser,
+    login,
+    navigate,
+    payload?.email,
+    payload?.id,
+    payload?.role,
+    payload?.sub,
+    redirectByRole,
+    refreshToken,
+  ]);
 
-    navigate("/", { replace: true });
-  }, [login, navigate]);
-
-  return <LoadingSpinner message="Signing you in with Google..." />;
+  return (
+    <>
+      <LoadingSpinner message="Signing you in with Google..." />
+      {showOnboarding && (
+        <GoogleOnboardingModal onComplete={handleOnboardingComplete} />
+      )}
+    </>
+  );
 }

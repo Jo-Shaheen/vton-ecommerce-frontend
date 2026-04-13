@@ -1,0 +1,134 @@
+@import "./variables.css";
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 16, 18, 0.58);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  z-index: 1200;
+}
+
+.modalCard {
+  width: 100%;
+  max-width: 560px;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-7);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  color: var(--charcoal);
+}
+
+.subtitle {
+  margin: var(--space-2) 0 var(--space-5) 0;
+  color: var(--charcoal-muted);
+  font-size: var(--text-sm);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.row {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--charcoal);
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: var(--space-3);
+  transform: translateY(-50%);
+  color: var(--charcoal-muted);
+}
+
+.input,
+.inputNoIcon,
+.select {
+  width: 100%;
+  border: 1px solid var(--ivory-dark);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  background: var(--white);
+  color: var(--charcoal);
+  box-sizing: border-box;
+}
+
+.input {
+  padding-left: 40px;
+}
+
+.input:focus,
+.inputNoIcon:focus,
+.select:focus {
+  border-color: var(--burgundy);
+  box-shadow: 0 0 0 3px rgba(139, 72, 82, 0.12);
+  outline: none;
+}
+
+.error {
+  margin: 0;
+  color: #b42318;
+  font-size: var(--text-sm);
+}
+
+.submitButton {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  background: var(--burgundy);
+  color: var(--white);
+  font-size: var(--text-md);
+  font-weight: var(--weight-bold);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.submitButton:hover {
+  background: var(--burgundy-dark);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .modalCard {
+    padding: var(--space-5);
+  }
+
+  .row {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+}
