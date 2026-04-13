@@ -16,6 +16,49 @@
     var(--space-16);
 }
 
+.fullHeightCenter {
+  flex: 1;
+  min-height: calc(100vh - var(--topbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorState {
+  flex: 1;
+  min-height: calc(100vh - var(--topbar-height));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  text-align: center;
+  padding: var(--space-8);
+}
+
+.errorTitle {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  color: var(--charcoal);
+}
+
+.errorMessage {
+  margin: 0;
+  color: var(--charcoal-muted);
+}
+
+.retryButton {
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--burgundy);
+  color: var(--white);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+
 /* ── Breadcrumb ── */
 .breadcrumb {
   display: flex;
@@ -114,6 +157,18 @@
   object-fit: cover;
 }
 
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  color: var(--charcoal-muted);
+  background: linear-gradient(135deg, var(--ivory-dark), var(--ivory));
+}
+
 .vtonBadge {
   position: absolute;
   top: var(--space-4);
@@ -177,6 +232,16 @@
   margin: 0;
 }
 
+.vendorLink {
+  width: fit-content;
+  font-size: var(--text-sm);
+  color: var(--burgundy);
+}
+
+.vendorLink:hover {
+  color: var(--burgundy-dark);
+}
+
 .productName {
   font-family: var(--font-serif);
   font-size: var(--text-3xl);
@@ -184,6 +249,12 @@
   color: var(--charcoal);
   margin: 0;
   line-height: var(--leading-tight);
+}
+
+.reviewHint {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--charcoal-muted);
 }
 
 /* Rating */
@@ -300,6 +371,12 @@
   color: var(--white);
 }
 
+.sizeDisabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
 /* ── Actions ── */
 .actions {
   display: flex;
@@ -329,6 +406,14 @@
 .addToCartButton:hover {
   background: var(--burgundy-dark);
   transform: translateY(-1px);
+}
+
+.addToCartButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background: var(--charcoal-muted);
+  box-shadow: none;
+  transform: none;
 }
 
 .wishlistButton {

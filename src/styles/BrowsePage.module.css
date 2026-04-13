@@ -1,4 +1,4 @@
-@import './variables.css';
+@import "./variables.css";
 
 .pageWrapper {
   display: flex;
@@ -11,9 +11,113 @@
   flex: 1;
 }
 
+.resultsArea {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.resultsToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-8);
+  background: var(--white);
+  border-bottom: 1px solid var(--ivory-dark);
+}
+
+.resultsCount {
+  margin: 0;
+  color: var(--charcoal-muted);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.sortSelect {
+  border: 1px solid var(--ivory-dark);
+  border-radius: var(--radius-md);
+  background: var(--ivory);
+  color: var(--charcoal);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-8);
+}
+
+.pageButton {
+  min-width: 44px;
+  border: 1px solid var(--ivory-dark);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  color: var(--charcoal);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pageButton:hover:not(:disabled) {
+  border-color: var(--burgundy);
+  color: var(--burgundy);
+}
+
+.pageButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pageButtonActive {
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  color: var(--white);
+}
+
+.recentSection {
+  background: var(--white);
+  border-top: 1px solid var(--ivory-dark);
+  padding: var(--space-6) var(--space-8) var(--space-8);
+}
+
+.recentTitle {
+  margin: 0 0 var(--space-4) 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  color: var(--charcoal);
+}
+
+.recentRow {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+}
+
+.recentCard {
+  min-width: 260px;
+  max-width: 260px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .browseContainer {
     flex-direction: column;
+  }
+
+  .resultsToolbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--space-4);
+  }
+
+  .recentSection {
+    padding: var(--space-4);
   }
 }

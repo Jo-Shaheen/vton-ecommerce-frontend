@@ -1,21 +1,32 @@
 import ProductCard from "../common/ProductCard";
+import LoadingSpinner from "../common/LoadingSpinner";
 import styles from "../../styles/ProductGrid.module.css";
 
-export default function ProductGrid({ products = [] }) {
+export default function ProductGrid({
+  products = [],
+  loading = false,
+  error = null,
+}) {
   return (
     <div className={styles.gridWrapper}>
       <div className={styles.gridContainer}>
-        {products.length > 0 ? (
+        {loading ? (
+          <div className={styles.loadingState}>
+            <LoadingSpinner message="Loading products..." />
+          </div>
+        ) : error ? (
+          <div className={styles.errorState}>
+            <h3 className={styles.emptyTitle}>Something Went Wrong</h3>
+            <p className={styles.emptyMessage}>{error}</p>
+          </div>
+        ) : products.length > 0 ? (
           <div className={styles.productsGrid}>
             {products.map((product) => (
               <ProductCard
                 key={product.id}
-                id={product.id}
-                image={product.image}
-                name={product.name}
-                price={product.price}
-                onTryOn={() => console.log("Try on:", product.id)}
-                onAddToCart={() => console.log("Add to cart:", product.id)}
+                product={product}
+                onTryOn={() => console.log("VTON Phase 7:", product.id)}
+                onAddToCart={() => console.log("Cart Phase 4:", product.id)}
               />
             ))}
           </div>
