@@ -1,19 +1,20 @@
-# Ayyinai – عَيِّناي ✨
+# AINAI – عَيِّناي ✨
 
 **"See yourself differently"**  
 A modern, culturally-aware Virtual Try-On (VTON) fashion platform built for the MENA region.
 
-![Ayyinai Banner](https://via.placeholder.com/800x300/8B4852/D4AF7A?text=Ayyinai+%E2%80%93+See+Yourself+Differently)
+![AINAI Banner](https://via.placeholder.com/800x300/8B4852/D4AF7A?text=AINAI+%E2%80%93+See+Yourself+Differently)
 
-## 🎯 What is Ayyinai?
+## 🎯 What is AINAI?
 
-Ayyinai (عَيِّناي) lets you **upload your photo** and instantly see how clothes look on *your* body — before you buy.  
+AINAI (عَيِّناي) lets you **upload your photo** and instantly see how clothes look on _your_ body — before you buy.
 
 No more guessing. No more high return rates. Just real, confident shopping with modesty-aware visualization tailored for MENA styles (abayas, thobes, modest fashion, etc.).
 
 This repository contains the **complete frontend** — built from scratch in **exactly 3 weeks** while I was learning React.
 
 ## ✨ Live Demo
+
 (Coming soon – deployed on Vercel)
 
 ## 🚀 Features (MVP – Built in 3 Weeks)
@@ -40,9 +41,9 @@ This repository contains the **complete frontend** — built from scratch in **e
 
 I built this entire app while following the **Scrimba React course** (20 modules, 6 capstone projects).
 
-- **Week 1**: Finished Sections 1–3 → Authentication system  
-- **Week 2**: Finished Sections 4–5 → Browse + Cart  
-- **Week 3**: Finished Section 6 (Assembly: Endgame) → Full Virtual Try-On flow  
+- **Week 1**: Finished Sections 1–3 → Authentication system
+- **Week 2**: Finished Sections 4–5 → Browse + Cart
+- **Week 3**: Finished Section 6 (Assembly: Endgame) → Full Virtual Try-On flow
 
 Every single feature was coded **right after** learning the concept in the course.  
 This is my first big React project — from zero to deployed MVP in 21 days.
@@ -62,11 +63,10 @@ src/
 ## 🛠 How to Run Locally
 
 ####bash
-git clone https://github.com/yourusername/ayyinai-frontend.git
-cd ayyinai-frontend
+git clone https://github.com/yourusername/ainai-frontend.git
+cd ainai-frontend
 npm install
 npm run dev
-
 
 Open [http://localhost:5173](http://localhost:5173)
 
@@ -85,7 +85,7 @@ Open [http://localhost:5173](http://localhost:5173)
 ---
 
 **Made with ❤️ while learning React**  
-*Started as a learning project — ended as a real portfolio piece.*
+_Started as a learning project — ended as a real portfolio piece._
 
 ---
 
@@ -93,7 +93,8 @@ Open [http://localhost:5173](http://localhost:5173)
 
 ---
 
-*Last updated: February 2026*
+_Last updated: February 2026_
+
 ```
 
 
@@ -116,3 +117,4 @@ Note: This will impact Vite dev & build performances.
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```

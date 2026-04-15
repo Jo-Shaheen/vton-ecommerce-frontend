@@ -1,44 +1,98 @@
-const API_BASE = ""; // Leave empty; fill later, e.g., 'http://localhost:3000'
+import apiClient from "./apiClient";
+import { clearAll } from "./localStorage";
 
-export const registerUser = async (name, email, password) => {
-  if (!name || !email || !password) {
-    return { status: false, output: "All fields are required." };
+const getErrorMessage = (error, fallbackMessage) => {
+  const backendMessage = error?.response?.data?.message;
+
+  if (Array.isArray(backendMessage)) {
+    return backendMessage.join(", ");
   }
-  if (password.length < 6) {
-    return { status: false, output: "Password must be at least 6 characters." };
+
+  if (typeof backendMessage === "string" && backendMessage.trim()) {
+    return backendMessage;
   }
-  // Placeholder: Uncomment API call and set API_BASE when backend is ready
-  // try {
-  //   const response = await fetch(`${API_BASE}/auth/register`, {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ name, email, password }),
-  //   });
-  //   const data = await response.json();
-  //   if (!response.ok) throw new Error(data.message);
-  //   return { status: true, output: 'Account created successfully!', token: data.token };
-  // } catch (error) {
-  //   return { status: false, output: error.message || 'Registration failed.' };
-  // }
-  return { status: true, output: "Account created successfully!" }; // Mock for now
+
+  return fallbackMessage;
+};
+
+export const registerUser = async (firstName, lastName, email, password) => {
+  try {
+    const response = await apiClient.post("/auth/register", {
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+
+    return { status: true, data: response.data };
+  } catch (error) {
+    return {
+      status: false,
+      message: getErrorMessage(error, "Registration failed."),
+    };
+  }
 };
 
 export const loginUser = async (email, password) => {
-  if (!email || !password) {
-    return { status: false, output: "Email and password are required." };
+  try {
+    const response = await apiClient.post("/auth/login", {
+      email,
+      password,
+    });
+
+    return { status: true, data: response.data };
+  } catch (error) {
+    return {
+      status: false,
+      message: getErrorMessage(error, "Login failed."),
+    };
   }
-  // Placeholder: Uncomment API call and set API_BASE when backend is ready
-  // try {
-  //   const response = await fetch(`${API_BASE}/auth/login`, {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ email, password }),
-  //   });
-  //   const data = await response.json();
-  //   if (!response.ok) throw new Error(data.message);
-  //   return { status: true, output: 'Login successful!', token: data.token };
-  // } catch (error) {
-  //   return { status: false, output: error.message || 'Login failed.' };
-  // }
-  return { status: true, output: "Login successful!" }; // Mock for now
+};
+
+export const logoutUser = async () => {
+  try {
+    await apiClient.post("/auth/logout");
+  } catch {
+    // Intentionally ignored to always resolve and clear local state.
+  } finally {
+    clearAll();
+  }
+
+  return { status: true };
+};
+
+export const refreshTokens = async (refreshToken) => {
+  try {
+    const response = await apiClient.post("/auth/refresh-tokens", {
+      refreshToken,
+    });
+
+    return { status: true, data: response.data };
+  } catch (error) {
+    return {
+      status: false,
+      message: getErrorMessage(error, "Unable to refresh tokens."),
+    };
+  }
+};
+
+export const forgotPassword = async (email) => {
+  try {
+    const response = await apiClient.post("/auth/forgot-password", { email });
+
+    return {
+      status: true,
+      message:
+        response?.data?.message ||
+        "If this email exists, a reset link was sent.",
+    };
+  } catch (error) {
+    return {
+      status: false,
+      message: getErrorMessage(
+        error,
+        "Unable to process forgot password request.",
+      ),
+    };
+  }
 };

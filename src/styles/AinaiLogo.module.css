@@ -1,7 +1,7 @@
 @import "./variables.css";
 
 /* ══════════════════════════════════════
-   AinaiLogo – matches ayyinai-logo-demo.html
+  AinaiLogo – matches ainai-logo-demo.html
    ══════════════════════════════════════ */
 
 .logoWrapper {
@@ -259,6 +259,46 @@
 
 .size_xl .tagline {
   font-size: 1.125rem;
+}
+
+/* xxl – for large hero image box */
+.size_xxl .logoWrapper {
+  flex-direction: column;
+}
+
+.size_xxl .eyeContainer {
+  width: 300px;
+  height: 300px;
+}
+
+.size_xxl .eye {
+  width: 125px;
+  height: 125px;
+}
+
+.size_xxl .eyeLeft {
+  position: absolute;
+  left: 25px;
+  top: 87.5px;
+}
+
+.size_xxl .eyeRight {
+  position: absolute;
+  right: 25px;
+  top: 87.5px;
+}
+
+/* Include text scaling just in case you ever set showText={true} later */
+.size_xxl .brandText {
+  font-size: 8rem;
+}
+
+.size_xxl .arabicText {
+  font-size: 3rem;
+}
+
+.size_xxl .tagline {
+  font-size: 2.25rem;
 }
 
 /* ══════════════════════

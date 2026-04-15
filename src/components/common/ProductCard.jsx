@@ -1,22 +1,38 @@
 import { ShoppingBag, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/ProductCard.module.css";
+import { formatPrice, getProductImage } from "../../utils/productHelpers";
 
-export default function ProductCard({
-  id,
-  image,
-  name,
-  price,
-  onTryOn,
-  onAddToCart,
-}) {
+export default function ProductCard({ product, onTryOn, onAddToCart }) {
+  if (!product) return null;
+
+  const imageUrl = getProductImage(product);
+  const initials = (product.name || "PR")
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
   return (
     <div className={styles.card}>
-      {/* Image Container */}
-      <Link to={`/product/${id}`} className={styles.imageWrapper}>
-        <img src={image} alt={name} className={styles.productImage} />
+      <Link to={`/product/${product.id}`} className={styles.imageWrapper}>
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={product.name}
+            className={styles.productImage}
+          />
+        ) : (
+          <div className={styles.imagePlaceholder}>
+            <span>{initials}</span>
+          </div>
+        )}
 
-        {/* Overlay Actions */}
+        {product.isLowStock === true && (
+          <span className={styles.lowStockBadge}>Low Stock</span>
+        )}
+
         <div className={styles.imageOverlay}>
           <button
             className={styles.tryOnButton}
@@ -31,15 +47,20 @@ export default function ProductCard({
         </div>
       </Link>
 
-      {/* Product Info */}
       <div className={styles.productInfo}>
-        <Link to={`/product/${id}`} className={styles.productNameLink}>
-          <h3 className={styles.productName}>{name}</h3>
-        </Link>
-        <p className={styles.productPrice}>${price.toFixed(2)}</p>
+        <p className={styles.brandName}>{product.vendor?.brandName || ""}</p>
 
-        {/* Add to Cart Button */}
-        <button className={styles.addToCartButton} onClick={onAddToCart}>
+        <Link to={`/product/${product.id}`} className={styles.productNameLink}>
+          <h3 className={styles.productName}>{product.name}</h3>
+        </Link>
+        <p className={styles.productPrice}>
+          {formatPrice(product.basePrice, product.currency)}
+        </p>
+
+        <button
+          className={styles.addToCartButton}
+          onClick={() => onAddToCart?.()}
+        >
           <ShoppingBag size={18} />
           <span>Add to Cart</span>
         </button>
